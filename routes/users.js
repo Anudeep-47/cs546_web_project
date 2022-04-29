@@ -19,6 +19,19 @@ const {
 } = require('../controllers/auth');
 
 
+
+router.get('/home', async (req, res) => {
+    if (!req.session.user) {
+        res.redirect('/user/login');
+    } else {
+        // get data for rendering here
+        res.render('pages/user_home', {
+            title: "Patient Home"
+        });
+    }
+});
+
+
 router.get('/login', async (req, res) => {
     if (req.session.user) {
         res.redirect('/');
@@ -37,6 +50,7 @@ router.get('/signup', async (req, res) => {
         res.redirect('/');
     } else {
         res.render('pages/signup', {
+            script_file: "auth_validation",
             title: "Sign Up",
             action: "/user/signup",
             linkTo: "/user/login"
@@ -52,8 +66,11 @@ router.post('/login', async (req, res) => {
     try {
         const user = await checkUser(email, password);
         if (user) {
-            authorizeUser(req, user._id);
-            res.redirect('/');
+            authorizeUser(req, {
+                id: user._id,
+                firstname: user.firstname
+            });
+            res.redirect('/user/home');
         } else {
             res.status(500).render("pages/error", {
                 error: "Internal Server Error"
@@ -86,7 +103,7 @@ router.post('/signup', async (req, res) => {
         if (await isDuplicateEmail(email)) {
             emailError = "Account already present. Please Login";
         }
-        if(firstnameError || lastnameError || emailError || passwordError) throw 'Validation error in user signup!!';
+        if (firstnameError || lastnameError || emailError || passwordError) throw 'Validation error in user signup!!';
         const {
             userInserted
         } = await createUser(firstname, lastname, email, password);
@@ -100,6 +117,7 @@ router.post('/signup', async (req, res) => {
     } catch (e) {
         console.log(e);
         res.render('pages/signup', {
+            script_file: "auth_validation",
             title: "Sign Up",
             action: "/user/signup",
             linkTo: "/user/login",
@@ -113,10 +131,6 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-router.get('/logout', function (req, res) {
-    logout(req, res);
-    res.redirect('/');
-});
 
 
 // router.get('/private', async (req, res) => {

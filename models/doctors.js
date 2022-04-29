@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 
 const {
     getDocs,
+    ObjectId,
     MongoError
 } = require('../config/mongoCollections');
 
@@ -12,6 +13,37 @@ const {
     isSpecialtyInvalid
 } = require('../helpers/auth_helper');
 
+
+const getDoctor = async (id) => {
+    const _id = ObjectId(id);
+    const docs = await getDocs();
+    let doc = await docs.findOne({
+        _id
+    });
+    if (!doc) throw `Cannot find doctor with id: ${id}`;
+    doc._id = doc._id.toString();
+    return doc;
+};
+
+const updateDoctor = async (id, data) => {
+    const _id = ObjectId(id);
+    const docs = await getDocs();
+    let doc = await docs.findOne({
+        _id
+    });
+    if (!doc) throw `Cannot find doctor with id: ${id}`;
+    const res = await docs.findOneAndUpdate({
+        _id
+    }, {
+        "$set": data
+    }, {
+        returnDocument: 'after'
+    });
+    doc = res.value;
+    if (doc === null) throw `Failed to update doctor with id: ${id}`;
+    doc._id = doc._id.toString();
+    return doc;
+};
 
 const isDuplicateEmail = async (email) => {
     const docs = await getDocs();
@@ -29,7 +61,7 @@ const createDoc = async (firstname, lastname, email, password, specialty) => {
     const passwordError = isPasswordInvalid(password);
     const specialtyError = isSpecialtyInvalid(specialty);
     try {
-        if(firstnameError || lastnameError || emailError || passwordError || specialtyError) throw 'Validation error in createDoc!!';
+        if (firstnameError || lastnameError || emailError || passwordError || specialtyError) throw 'Validation error in createDoc!!';
         const saltRounds = 16;
         password = await bcrypt.hash(password, saltRounds);
         const docs = await getDocs();
@@ -41,7 +73,8 @@ const createDoc = async (firstname, lastname, email, password, specialty) => {
             lastname,
             email,
             password,
-            specialty
+            specialty,
+            schedules: []
         });
         return {
             docInserted: acknowledged && insertedId
@@ -75,5 +108,7 @@ const checkDoc = async (email, password) => {
 module.exports = {
     createDoc,
     checkDoc,
-    isDuplicateEmail
+    isDuplicateEmail,
+    getDoctor,
+    updateDoctor
 }

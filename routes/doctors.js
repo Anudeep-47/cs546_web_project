@@ -10,14 +10,59 @@ const {
 const {
     createDoc,
     checkDoc,
-    isDuplicateEmail
+    isDuplicateEmail,
+    getDoctor,
+    updateDoctor
 } = require('../models/doctors');
 
 const {
-    logout,
     authorizeDoctor
 } = require('../controllers/auth');
 
+
+router.get('/home', async (req, res) => {
+    if (!req.session.doctor) {
+        res.redirect('/doctor/login');
+    } else {
+        // get data for rendering here
+        res.render('pages/doctor_home', {
+            script_file: "doc_home",
+            title: "Doctor Home"
+        });
+    }
+});
+
+router.get('/data', async (req, res) => {
+    if (!req.session.doctor) {
+        res.redirect('/doctor/login');
+    } else {
+        const id = req.session.doctor.id;
+        const data = await getDoctor(id);
+        res.json({
+            schedules: data.schedules
+        });
+    }
+});
+
+router.post('/data', async (req, res) => {
+    if (!req.session.doctor) {
+        res.redirect('/doctor/login');
+    } else {
+        const schedules = req.body.schedules;
+        const id = req.session.doctor.id;
+        schedules.forEach(schdl => {
+            schdl.available = JSON.parse(schdl.available);
+            schdl.sessionTime = JSON.parse(schdl.sessionTime);
+            if (!schdl.breakTimes) schdl.breakTimes = [];
+        });
+        const result = await updateDoctor(id, {
+            schedules
+        });
+        res.json({
+            schedules: result.schedules
+        });
+    }
+});
 
 router.get('/login', async (req, res) => {
     if (req.session.doctor) {
@@ -37,6 +82,7 @@ router.get('/signup', async (req, res) => {
         res.redirect('/');
     } else {
         res.render('pages/signup', {
+            script_file: "auth_validation",
             title: "Sign Up",
             action: "/doctor/signup",
             linkTo: "/doctor/login",
@@ -53,8 +99,11 @@ router.post('/login', async (req, res) => {
     try {
         const doc = await checkDoc(email, password);
         if (doc) {
-            authorizeDoctor(req, doc._id);
-            res.redirect('/');
+            authorizeDoctor(req, {
+                id: doc._id,
+                firstname: doc.firstname
+            });
+            res.redirect('/doctor/home');
         } else {
             res.status(500).render("pages/error", {
                 error: "Internal Server Error"
@@ -89,7 +138,7 @@ router.post('/signup', async (req, res) => {
         if (await isDuplicateEmail(email)) {
             emailError = "Account already present. Please Login";
         }
-        if(firstnameError || lastnameError || emailError || passwordError || specialtyError) throw 'Validation error in doc signup!!';
+        if (firstnameError || lastnameError || emailError || passwordError || specialtyError) throw 'Validation error in doc signup!!';
         const {
             docInserted
         } = await createDoc(firstname, lastname, email, password, specialty);
@@ -103,6 +152,7 @@ router.post('/signup', async (req, res) => {
     } catch (e) {
         console.log(e);
         res.render('pages/signup', {
+            script_file: "auth_validation",
             title: "Sign Up",
             action: "/doctor/signup",
             linkTo: "/doctor/login",
@@ -118,10 +168,6 @@ router.post('/signup', async (req, res) => {
 });
 
 
-router.get('/logout', function (req, res) {
-    logout(req, res);
-    res.redirect('/');
-});
 
 
 // router.get('/private', async (req, res) => {

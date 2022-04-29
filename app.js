@@ -13,13 +13,12 @@ app.use(express.urlencoded({
 }));
 app.use('/public', express.static(__dirname + "/public"));
 
-app.set('views', path.join(__dirname, '/views/'))
+
 app.engine('hbs', exphbs.engine({
-    defaultLayout: 'main',
-    extname: 'hbs',
-    // layoutsDir: __dirname + '/views/layouts/'
+    extname: 'hbs'
 }));
 app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, '/views/'))
 
 
 app.use(session({

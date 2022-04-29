@@ -1,16 +1,21 @@
-
-#login {
-    margin-top: 100px;
+body {
+  padding-top: 100px;
 }
 
-#signup {
-    margin-top: 100px;
+.nowrap {
+  white-space: nowrap;
 }
 
-#home {
-    margin-top: 100px;
+.slot {
+  box-shadow: none !important;
 }
 
-#search {
-    margin-top: 100px;
+.scroll {
+  max-height: 200px;
+  overflow-y: auto;
 }
+
+/* #schdl_section1 {
+  display: block;
+  overflow: auto;
+} */

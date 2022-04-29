@@ -1,0 +1,118 @@
+<div id="user_home" class="container">
+  <div id="search_section" class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body p-5">
+          <div id="row home_text">
+            <h1>Hi {{auth.firstname}}</h1>
+            <h1>Book appointment now with the right Doctor !</h1>
+          </div>
+          <div id="row search_bar">
+            <form action="" method="post">
+              <div class="row">
+                <div class="col">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Specialty"
+                    aria-label="Specialty"
+                  />
+                </div>
+                <div class="col">
+                  <select class="form-select" id="insurance" name="insurance">
+                    <option selected>Choose Insurance</option>
+                    <option value="self">Self Payment</option>
+                    {{#each insurances}}
+                      <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+                <div class="col-1">
+                  <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div id="user_section" class="row mt-5">
+    <div id="appointments" class="col-4">
+      <div class="accordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseOne"
+              aria-expanded="true"
+              aria-controls="panelsStayOpen-collapseOne"
+            >
+              Upcoming Appointments
+            </button>
+          </h2>
+          <div
+            id="panelsStayOpen-collapseOne"
+            class="accordion-collapse collapse show"
+            aria-labelledby="panelsStayOpen-headingOne"
+          >
+            <div class="accordion-body">
+              {{#if new_appointments}}
+                {{#each new_appointments}}
+                  <a class="dropdown-item" href="">
+                    Appointment 1
+                    {{this.datetime}}
+                    {{this.doctor_name}}
+                  </a>
+                {{/each}}
+              {{else}}
+                No New Appointments
+              {{/if}}
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseTwo"
+              aria-expanded="true"
+              aria-controls="panelsStayOpen-collapseTwo"
+            >
+              Past Appointments
+            </button>
+          </h2>
+          <div
+            id="panelsStayOpen-collapseTwo"
+            class="accordion-collapse collapse show"
+            aria-labelledby="panelsStayOpen-headingTwo"
+          >
+            <div class="accordion-body">
+              {{#if past_appointments}}
+                {{#each past_appointments}}
+                  <a class="dropdown-item" href="">
+                    Appointment 1
+                    {{this.datetime}}
+                    {{this.doctor_name}}
+                  </a>
+                {{/each}}
+              {{else}}
+                No Past Appointments
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col ml-5">
+        <div class="card card-body">
+            
+        </div>
+    </div>
+  </div>
+</div>

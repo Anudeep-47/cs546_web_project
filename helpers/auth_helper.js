@@ -32,12 +32,12 @@ const isSpecialtyInvalid = (specialty) => {
 };
 
 const getAuthDetails = (req_session) => {
-    console.log(req_session);
+    // console.log(req_session);
     if(req_session.user){
-        return `Authenticated User '${req_session.user}'`;
+        return `Authenticated User '${req_session.user.id}'`;
     }
     if(req_session.doctor){
-        return `Authenticated Doctor '${req_session.doctor}'`;
+        return `Authenticated Doctor '${req_session.doctor.id}'`;
     }
     return "Non-Authenticated";
 };
