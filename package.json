@@ -4,7 +4,8 @@
   "description": "This is the CS546 Web Programming Course Project by Group 22 in Spring 22 semester at Stevens Institute of Technology",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
