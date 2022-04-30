@@ -80,6 +80,7 @@ router.get("/signup", async (req, res) => {
   } else {
     res.render("pages/signup", {
       script_file: "auth_validation",
+      address_script: "true",
       title: "Sign Up",
       action: "/doctor/signup",
       linkTo: "/doctor/login",
