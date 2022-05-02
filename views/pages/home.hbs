@@ -1,4 +1,273 @@
-<div id="home">
-  <h1>This is {{title}} Page</h1>
-  <a href="/search">Go to Search Page</a>
+<html lang="en">
+  <body>
+    <section>
+    <div id="user_home" class="container">
+    <div id="search_section" class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body p-5">
+          <div id="row home_text">
+            {{!-- <h1>Hi {{auth.firstname}}</h1> --}}
+            <h1>Find local doctors</h1>
+            <h1>Who take your insurance !</h1>
+          </div>
+          <div id="row search_bar">
+            <form action="" method="post">
+              <div class="row">
+                <div class="col">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Specialty"
+                    aria-label="Specialty"
+                  />
+                </div>
+                <div class="col">
+                  <select class="form-select" id="insurance" name="insurance">
+                    <option selected>Choose your Insurance</option>
+                    <option value="self">Self Payment</option>
+                    <option>Aetna</option>
+                    <option>Cigna</option>
+                    <option>United Healthcare</option>
+                    <option>United Healthcare Oxford</option>
+                    {{#each insurances}}
+                      <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+                <div class="col-1">
+                  <button type="submit" class="btn btn-primary" href="search.hbs">Search</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  </div>
+  </section>
+
+  <section>
+       <div class="container my-4">
+      
+        <a><strong>Doctors with loyal patients</strong></a
+        >
+      </p>
+
+     <hr class="mt-5">
+
+  
+
+  <hr class="mb-5"/>
+
+<!--Carousel Wrapper-->
+<div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+  <!--Controls-->
+  <div class="controls-top">
+    <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
+    <a class="btn-floating" href="#multi-item-example" data-slide="next"><i
+        class="fas fa-chevron-right"></i></a>
+  </div>
+  <!--/.Controls-->
+
+  <!--Indicators-->
+  <ol class="carousel-indicators">
+    <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+    <li data-target="#multi-item-example" data-slide-to="1"></li>
+    
+  </ol>
+  <!--/.Indicators-->
+
+  <!--Slides-->
+  <div class="carousel-inner" role="listbox">
+
+    <!--First slide-->
+    <div class="carousel-item active">
+
+      <div class="col-md-3" style="float:left">
+       <div class="card mb-2">
+          {{!-- <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap"> --}}
+          <div class="card-body">
+            <h4 class="card-title">Doctor1</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">View availability</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3" style="float:left">
+        <div class="card mb-2">
+          {{!-- <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap"> --}}
+          <div class="card-body">
+            <h4 class="card-title">Doctor2</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">View Availibility</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3" style="float:left">
+        <div class="card mb-2">
+          {{!-- <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap"> --}}
+          <div class="card-body">
+            <h4 class="card-title">Doctor3</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">View Availibility</a>
+          </div>
+        </div>
+      </div>
+      
+       <div class="col-md-3" style="float:left">
+       <div class="card mb-2">
+          {{!-- <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap"> --}}
+          <div class="card-body">
+            <h4 class="card-title">Doctor4</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">View Availibility</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--/.First slide-->
+
+    <!--Second slide-->
+    <div class="carousel-item">
+
+      <div class="col-md-3" style="float:left">
+        <div class="card mb-2">
+          {{!-- <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap"> --}}
+          <div class="card-body">
+            <h4 class="card-title">Doctor5</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">View Availibility</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3" style="float:left">
+        <div class="card mb-2">
+          {{!-- <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg" alt="Card image cap"> --}}
+          <div class="card-body">
+            <h4 class="card-title">Doctor6</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">View Availibility</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3" style="float:left">
+        <div class="card mb-2">
+          {{!-- <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg" alt="Card image cap"> --}}
+          <div class="card-body">
+            <h4 class="card-title">Doctor7/h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">View Availibility</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-3" style="float:left">
+        <div class="card mb-2">
+          {{!-- <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg" alt="Card image cap"> --}}
+          <div class="card-body">
+            <h4 class="card-title">Doctor8</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+              card's content.</p>
+            <a class="btn btn-primary">View Availibility</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--/.Second slide-->
+
+   
+
+  </div>
+  <!--/.Slides-->
+
 </div>
+<!--/.Carousel Wrapper-->
+  </section>
+
+  <section>
+    <h2>Top searched specialities</h2>
+    <div class="row">
+  <div class="col-sm-6 col-md-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Primary care</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">OB-GYN</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Dermatologist</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Dentist</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
+  </section>
+
+  <section>
+    <div class="col-sm-6 col-md-4">
+      <p class="bold intro">App for private practices</p>
+      <h3>Are you a provider interested in reaching new patients?</h3>
+      <ul>
+        <li>Reach Patients in your area</li>
+        <li>Fill last minute openings</li>
+        <li>Strengthen your online reputation with verified reviews</li>
+      </ul>
+      <div>
+        <a href="doctor/signup" class="btn btn-primary">List your practise</a>
+      </div>
+    </div>
+  </section>
+
+  
+  
+  </body>
+</html>
