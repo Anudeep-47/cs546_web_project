@@ -1,4 +1,10 @@
 <div id="search">
+  <div class="container">
   <h1>This is {{title}} Page</h1>
-
+    <div class="list-group">
+        {{#each docs}}
+        <a href="/doctor/{{this._id}}" class="list-group-item list-group-item-action">{{this.firstname}} {{this.lastname}}<br>{{this.specialty}}</a>
+        {{/each}}
+    </div>
+  </div>
 </div>

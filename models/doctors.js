@@ -64,7 +64,8 @@ const createDoc = async (
   city,
   state,
   zip,
-  country
+  country,
+  coords
 ) => {
   const firstnameError = isNameInvalid(firstname);
   const lastnameError = isNameInvalid(lastname);
@@ -96,6 +97,7 @@ const createDoc = async (
       state,
       zip,
       country,
+      coords,
     });
     return {
       docInserted: acknowledged && insertedId,
@@ -123,10 +125,25 @@ const checkDoc = async (email, password) => {
   }
 };
 
+const searchDocs = async (specialtySearch,insurance) => {
+  const docs = await getDocs();
+  let doc
+  if(specialtySearch == "Specialty"){
+    doc = await docs.find({}, { projection: { password: 0, email: 0 } }).toArray();
+  }
+  else{doc = await docs.find({specialty: specialtySearch}, { projection: { password: 0, email: 0 } }).toArray();}
+
+  
+  if (!doc) throw `Cannot find doctor with specialty: ${specialty}`;
+  return doc;
+};
+
+
 module.exports = {
   createDoc,
   checkDoc,
   isDuplicateEmail,
   getDoctor,
   updateDoctor,
+  searchDocs,
 };

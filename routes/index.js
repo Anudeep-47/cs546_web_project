@@ -1,5 +1,7 @@
 const userRoutes = require('./users');
 const doctorRoutes = require('./doctors');
+const homeRoutes = require('./home');
+const searchRoutes = require('./search');
 
 const {
     getAuthDetails
@@ -22,22 +24,12 @@ const constructor = (app) => {
         res.redirect('/');
     });
     
-    app.use('/search', async (req, res) => {
-        res.render('pages/search', {
-            title: "Search",
-            
-        });
-    });
-    
     app.use('/user', userRoutes);
     app.use('/doctor', doctorRoutes);
+    app.use('/', homeRoutes);
+    app.use('/search', searchRoutes);
 
-    app.use('/', async (req, res) => {
-        res.render('pages/home', {
-            title: "Home",
 
-        });
-    });
 
     // app.use('/', async (req, res, next) => {
     //     if (!!req.session.user) {

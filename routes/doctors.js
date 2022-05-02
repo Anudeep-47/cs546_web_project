@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const axios = require("axios").default;
+
 
 const {
   isNameInvalid,
@@ -132,6 +134,18 @@ router.post("/signup", async (req, res) => {
   let state = req.body.address4.trim();
   let zip = req.body.address5.trim();
   let country = req.body.address6.trim();
+  const fullAddress = address + " " + city + " " + " " + state + " " + zip;
+  let geoloc;
+
+  async function getloc(fadd) {
+    var { data } = await axios.get(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${fadd}&key=AIzaSyBFYx4flUaipnwrahPBPcFqVLqkKyLwVnE`
+    );
+    data = data.results[0].geometry.location;
+    return data;
+  }
+
+  geoloc = await getloc(fullAddress);
 
   const firstnameError = isNameInvalid(firstname);
   const lastnameError = isNameInvalid(lastname);
@@ -139,6 +153,9 @@ router.post("/signup", async (req, res) => {
   const passwordError = isPasswordInvalid(password);
   const specialtyError = isSpecialtyInvalid(specialty);
   var addressError = isAddressInvalid(city);
+
+
+
 
   try {
     email = email.trim().toLowerCase();
@@ -165,7 +182,8 @@ router.post("/signup", async (req, res) => {
       city,
       state,
       zip,
-      country
+      country,
+      geoloc
     );
     if (docInserted) {
       res.redirect("/doctor/login");

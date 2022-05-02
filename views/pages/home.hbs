@@ -12,15 +12,17 @@
             <h1>Who take your insurance !</h1>
           </div>
           <div id="row search_bar">
-            <form action="" method="post">
+            <form action="/" method="post">
               <div class="row">
                 <div class="col">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Specialty"
-                    aria-label="Specialty"
-                  />
+ 
+
+              <select class="form-select" id="specialty" name="specialty">
+                <option selected>Specialty</option>
+                {{#each specialty}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+              </select>
                 </div>
                 <div class="col">
                   <select class="form-select" id="insurance" name="insurance">
