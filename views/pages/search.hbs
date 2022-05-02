@@ -1,10 +1,59 @@
-<div id="search">
-  <div class="container">
+<div class="container">
   <h1>This is {{title}} Page</h1>
-    <div class="list-group">
+
+  <div class="row">
+    <div class="col-md-8 ">
+      <div class="list-group">
         {{#each docs}}
-        <a href="/doctor/{{this._id}}" class="list-group-item list-group-item-action">{{this.firstname}} {{this.lastname}}<br>{{this.specialty}}</a>
+        <a href="/doctor/{{this._id}}" class="list-group-item list-group-item-action"> <span
+            class="create_index">{{@index}}</span> {{this.firstname}}
+          {{this.lastname}}<br>{{this.specialty}}<br>{{this.address}}
+          {{this.apartment}},{{this.city}},{{this.state}},{{this.zip}}</a>
         {{/each}}
+      </div>
+
+    </div>
+    <div class="col-md-4">
+      <div id="map" style="height: 400px;"></div>
     </div>
   </div>
 </div>
+
+<script>
+  var decodedJson = decodeURIComponent("{{{docsEncoded}}}");
+  var stores = JSON.parse(decodedJson);
+  //  let stores = {{{ docs }}}; // the triple brackets
+  console.log('Data : ', stores);
+
+  function initMap() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 9,
+      center: stores[0].coords,
+    });
+    for (let i = 0; i < stores.length; i++) {
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(stores[i].coords), // whatever applies
+        map: map,
+        draggable: false,
+        icon: `https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red${i + 1}.png`
+      });
+    }
+
+    marker.addListener("mouseover", () => {
+      map.setZoom(12);
+      map.setCenter(marker.getPosition());
+    });
+  }
+
+</script>
+
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFYx4flUaipnwrahPBPcFqVLqkKyLwVnE&libraries=places&callback=initMap"
+  async defer></script>
+
+<script>
+  var divs = document.querySelectorAll('.create_index');
+  for (var i = 0; i < divs.length; ++i) {
+    divs[i].innerHTML = i + 1;
+  }
+</script>
