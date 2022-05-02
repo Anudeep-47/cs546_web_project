@@ -8,6 +8,10 @@ const {
 } = require('../helpers/auth_helper');
 
 const {
+    splitAppointments
+} = require('../helpers/apptmnt_helper');
+
+const {
     createUser,
     checkUser,
     isDuplicateEmail
@@ -18,15 +22,27 @@ const {
     authorizeUser
 } = require('../controllers/auth');
 
+const {
+    getUserAppointments
+} = require('../models/appointments');
+
 
 
 router.get('/home', async (req, res) => {
     if (!req.session.user) {
         res.redirect('/user/login');
     } else {
-        // get data for rendering here
+        const userId = req.session.user._id;
+        const apptmnts = await getUserAppointments(userId);
+        const {
+            newApptmnts,
+            pastApptmnts
+        } = splitAppointments(apptmnts);
         res.render('pages/user_home', {
-            title: "Patient Home"
+            script_file: "user_home",
+            title: "Patient Home",
+            newApptmnts,
+            pastApptmnts
         });
     }
 });

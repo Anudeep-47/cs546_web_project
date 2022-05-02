@@ -14,7 +14,8 @@ const createRemainingSchedule = (count, curDate, schedules) => {
             startDay: '09:00',
             endDay: '18:00',
             sessionTime: 30,
-            breakTimes: []
+            breakTimes: [],
+            workTimes: []
         }
         schedules.push(daySchedule);
         curDate.add(1, 'days');
@@ -67,6 +68,9 @@ const createSlotElements = (schdl, allSlotTimes) => {
         const slotButton = $('<button>');
         if (schdl.breakTimes.includes(tSlot)) {
             slotButton.addClass('slot btn btn-outline-danger active btn-sm rounded-0 my-1');
+        } else if (schdl.workTimes.includes(tSlot)) {
+            slotButton.addClass('slot btn btn-outline-success active btn-sm rounded-0 my-1');
+            slotButton.prop('disabled', true);
         } else {
             slotButton.addClass('slot btn btn-outline-success btn-sm rounded-0 my-1');
         }
@@ -81,6 +85,7 @@ const createScheduleElements = (schedules) => {
         schdl.available = JSON.parse(schdl.available);
         schdl.sessionTime = JSON.parse(schdl.sessionTime);
         if (!schdl.breakTimes) schdl.breakTimes = [];
+        if (!schdl.workTimes) schdl.workTimes = [];
         const dayStr = `${schdl.monthName}${schdl.day}`;
         scheduleArray.push(dayStr);
         const allSlotTimes = generateSlotTimes(schdl.sessionTime);
@@ -207,28 +212,32 @@ $('.startEndDay').on('change', function () {
 
 $(document).on({
     mouseenter: function () {
-        $(this).removeClass('btn-outline-success');
-        $(this).addClass('btn-outline-danger');
+        if(!$(this).prop('disabled')){
+            $(this).removeClass('btn-outline-success');
+            $(this).addClass('btn-outline-danger');
+        }
     },
     mouseleave: function () {
-        if (!$(this).hasClass('active')) {
+        if (!$(this).prop('disabled') && !$(this).hasClass('active')) {
             $(this).removeClass('btn-outline-danger');
             $(this).addClass('btn-outline-success');
         }
     },
     click: function () {
-        const parentId = $(this).parent().attr('id');
-        const day = parentId[parentId.length - 1];
-        const dayStr = scheduleArray[day - 1 + PAGE * 7];
-        const schdl = scheduleElements[dayStr];
-        const tSlot = $(this).text().trim();
-        if ($(this).hasClass('active')) {
-            $(this).removeClass('active');
-            const index = schdl.breakTimes.indexOf(tSlot);
-            if (index > -1) schdl.breakTimes.splice(index, 1);
-        } else {
-            $(this).addClass('active');
-            schdl.breakTimes.push(tSlot);
+        if(!$(this).prop('disabled')){
+            const parentId = $(this).parent().attr('id');
+            const day = parentId[parentId.length - 1];
+            const dayStr = scheduleArray[day - 1 + PAGE * 7];
+            const schdl = scheduleElements[dayStr];
+            const tSlot = $(this).text().trim();
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                const index = schdl.breakTimes.indexOf(tSlot);
+                if (index > -1) schdl.breakTimes.splice(index, 1);
+            } else {
+                $(this).addClass('active');
+                schdl.breakTimes.push(tSlot);
+            }
         }
     }
 }, ".slot");
@@ -248,5 +257,5 @@ $('#saveSchedules').on('click', function (e) {
         schedules
     }, (response) => {
         console.log(response);
-    })
+    });
 });

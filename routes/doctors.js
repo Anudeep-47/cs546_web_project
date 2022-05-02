@@ -32,16 +32,16 @@ router.get("/home", async (req, res) => {
   }
 });
 
-router.get("/data", async (req, res) => {
-  if (!req.session.doctor) {
-    res.redirect("/doctor/login");
-  } else {
-    const id = req.session.doctor.id;
-    const data = await getDoctor(id);
-    res.json({
-      schedules: data.schedules,
-    });
-  }
+router.get('/data/:doc_id?', async (req, res) => {
+    if (!req.params.doc_id && !req.session.doctor) {
+        res.redirect('/doctor/login');
+    } else {
+        const id = req.params.doc_id || req.session.doctor.id;
+        const data = await getDoctor(id);
+        res.json({
+            schedules: data.schedules
+        });
+    }
 });
 
 router.post("/data", async (req, res) => {
