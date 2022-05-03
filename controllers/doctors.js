@@ -5,7 +5,9 @@ const {
     updateDoctor
 } = require('../models/doctors');
 
-
+const {
+    getDocReviews
+} = require('../models/reviews');
 
 const addApptmntToDocSchedule = async (apptmnt) => {
     const doctor = await getDoctor(apptmnt.doctor_id);
@@ -41,8 +43,21 @@ const removeApptmntFromDocSchedule = async (apptmnt) => {
     return result;
 };
 
+const updateDocRating = async ({
+    doctor_id
+}) => {
+    const docReviews = await getDocReviews(doctor_id);
+    const avgRating = docReviews.reduce((total, {
+        rating
+    }) => total + rating / (docReviews.length || 1), 0);
+    const result = await updateDoctor(doctor_id, {
+        rating: Math.round(avgRating * 10) / 10
+    });
+    return result;
+}
 
 module.exports = {
     addApptmntToDocSchedule,
-    removeApptmntFromDocSchedule
+    removeApptmntFromDocSchedule,
+    updateDocRating
 }

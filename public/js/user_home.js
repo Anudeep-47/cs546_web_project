@@ -281,3 +281,69 @@ $('#updateApptmnt').on('click', function (e) {
         $('#rescheduleModal').modal('toggle');
     });
 });
+
+$(document).on({
+    mouseenter: function () {
+        if ($('#rateNum').text().length === 0) {
+            const elementId = $(this).attr('id');
+            const num = elementId[elementId.length - 1];
+            for (let i = 1; i <= num; i++) {
+                $(`#star${i}`).addClass('star');
+            }
+        }
+    },
+    mouseleave: function () {
+        if ($('#rateNum').text().length === 0) {
+            for (let i = 1; i <= 5; i++) {
+                $(`#star${i}`).removeClass('star');
+            }
+        }
+    },
+    click: function () {
+        const elementId = $(this).attr('id');
+        const num = elementId[elementId.length - 1];
+        for (let i = 1; i <= 5; i++) {
+            if (i <= num) $(`#star${i}`).addClass('star');
+            else $(`#star${i}`).removeClass('star');
+        }
+        $('#rateNum').text(num);
+        mainApptmnt.rating = num;
+    }
+}, ".rate");
+
+$('#reviewModal').on('hidden.bs.modal', function () {
+    $('#rateNum').text('');
+    for (let i = 1; i <= 5; i++) {
+        $(`#star${i}`).removeClass('star');
+    }
+    $('#reviewText').val('');
+    delete mainApptmnt.rating;
+    delete mainApptmnt.review;
+});
+
+$('#submitReview').on('click', function(e) {
+    e.preventDefault();
+    if(mainApptmnt.rating){
+        mainApptmnt.review = $('#reviewText').val();
+        const {
+            _id,
+            user_id,
+            doctor_id,
+            rating,
+            review
+        } = mainApptmnt;
+        const reviewData = {
+            apptmnt_id: _id,
+            user_id,
+            doctor_id,
+            rating,
+            review
+        };
+        $.post(`/review`, {
+            reviewData
+        }, (response) => {
+            console.log(response);
+            $('#reviewModal').modal('toggle');
+        });
+    }
+});

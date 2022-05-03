@@ -36,3 +36,11 @@ body {
 p {
   margin: 0;
 }
+
+textarea {
+  height: 200px;
+}
+
+.star {
+  color: orange;
+}

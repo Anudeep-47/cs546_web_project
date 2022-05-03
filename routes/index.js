@@ -3,6 +3,7 @@ const doctorRoutes = require('./doctors');
 const homeRoutes = require('./home');
 const searchRoutes = require('./search');
 const appointmentRoutes = require('./appointments');
+const reviewRoutes = require('./reviews');
 
 const {
     getAuthDetails
@@ -27,23 +28,11 @@ const constructor = (app) => {
     
     app.use('/user', userRoutes);
     app.use('/doctor', doctorRoutes);
-    app.use('/', homeRoutes);
     app.use('/search', searchRoutes);
     app.use('/appointment', appointmentRoutes);
-
-
-
-    // app.use('/', async (req, res, next) => {
-    //     if (!!req.session.user) {
-    //         next();
-    //     } else {
-    //         res.redirect('/user/login');
-    //         // res.status(403).render('user/error', {
-    //         //     title: "Error",
-    //         //     error: "ERROR 403: User not Logged In!!"
-    //         // });
-    //     }
-    // });
+    app.use('/review', reviewRoutes);
+    
+    app.use('/', homeRoutes);
 
     app.use('*', (req, res) => {
         res.status(404).render("user/error", {
