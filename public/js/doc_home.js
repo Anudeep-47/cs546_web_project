@@ -2,6 +2,10 @@ const scheduleElements = {};
 const scheduleArray = [];
 let PAGE = 0;
 
+let newApptmnts = []
+let pastApptmnts = []
+let mainApptmnt = undefined;
+
 const createRemainingSchedule = (count, curDate, schedules) => {
     while (count--) {
         const daySchedule = {
@@ -100,7 +104,7 @@ const createScheduleElements = (schedules) => {
 
 const renderDayLabels = (day, schdl) => {
     $(`#labelDay${day}`).text(`${schdl.monthName} ${schdl.day} ${schdl.dayOfWeek}`);
-    $(`#labelSlotsDay${day}`).text(`${schdl.monthName} ${schdl.day} ${schdl.dayOfWeek}`);
+    $(`#labelSlotsDay${day}`).html(`${schdl.monthName} ${schdl.day} <p>${schdl.dayOfWeek}</p>`);
 };
 
 const renderDayInfo = (day, {
@@ -157,7 +161,103 @@ const loadSchedules = () => {
     });
 };
 
+const initializeAppointments = (apptmnts) => {
+    newApptmnts = []
+    pastApptmnts = []
+    mainApptmnt = undefined;
+    const now = moment();
+    apptmnts.forEach(apptmnt => {
+        const apptmntTime = moment(apptmnt.time);
+        if (now < apptmntTime) {
+            apptmnt.type = 'new';
+            newApptmnts.push(apptmnt);
+        } else {
+            apptmnt.type = 'past';
+            pastApptmnts.push(apptmnt);
+        }
+    });
+    newApptmnts.sort((apptmnt1, apptmnt2) => {
+        return moment(apptmnt1.time) < moment(apptmnt2.time) ? 1 : -1;
+    });
+    pastApptmnts.sort((apptmnt1, apptmnt2) => {
+        return moment(apptmnt1.time) < moment(apptmnt2.time) ? 1 : -1;
+    });
+    mainApptmnt = newApptmnts[0] || pastApptmnts[0];
+};
+
+const addApptmntListener = (a) => {
+    a.on('click', function (e) {
+        e.preventDefault();
+        const elementId = $(this).attr('id');
+        const type = elementId.split('_')[0];
+        const index = parseInt(elementId.split('_')[2]);
+        mainApptmnt = type === 'new' ? newApptmnts[index] : pastApptmnts[index];
+        updateApptmntSection();
+    });
+};
+
+const createAppointmentElements = (parent, apptmnts) => {
+    parent.empty();
+    if (apptmnts[0]) {
+        $(`#no_${apptmnts[0].type}_apptmnt_h4`).hide();
+    }
+    apptmnts.forEach((apptmnt, index) => {
+        const indexStr = index.toString().padStart(3, "0");
+        const a = $('<a>').addClass("apptmnt dropdown-item p-0").attr('id', `${apptmnt.type}_apptmnt_${indexStr}`);
+        const div1 = $("<div>").addClass("card-body border");
+        const p1 = $("<p>").text(apptmnt.patient_name);
+        const p2 = $("<p>").addClass("small text-muted").text(`${apptmnt.patient_age} ${apptmnt.patient_gender}`);
+        const p3 = $("<p>").addClass("small mt-2").text(apptmnt.time_string);
+        a.append(div1.append(p1).append(p2).append(p3));
+        addApptmntListener(a);
+        parent.append(a);
+    });
+};
+
+const createAppointments = () => {
+    createAppointmentElements($("#new_apptmnts"), newApptmnts);
+    createAppointmentElements($("#past_apptmnts"), pastApptmnts);
+};
+
+const updateApptmntSection = () => {
+    if (mainApptmnt) {
+        $("#no_apptmnt_h3").hide();
+        $('#pat_name').text(mainApptmnt.patient_name);
+        $('#pat_reason').text(mainApptmnt.patient_reason);
+        $('#appt_time').text(mainApptmnt.time_string);
+        $('#appt_notes').text(mainApptmnt.patient_notes);
+        $('#pat_gen').text(mainApptmnt.patient_gender);
+        $('#pat_age').text(mainApptmnt.patient_age);
+        $('#appt_dur').text(mainApptmnt.duration);
+        if (mainApptmnt.type === 'new') {
+            $('#reschdl_btn').show();
+            $('#cncl_btn').show();
+            $('#revw_btn').hide();
+        } else {
+            $('#reschdl_btn').hide();
+            $('#cncl_btn').hide();
+            $('#revw_btn').show();
+        }
+        $("#apptmnt_view").show();
+    } else {
+        $("#apptmnt_view").hide();
+        $("#no_apptmnt_h3").show();
+    }
+};
+
+const loadAppointments = () => {
+    $.get('/appointment', ({
+        apptmnts
+    }) => {
+        console.log(apptmnts);
+        initializeAppointments(apptmnts);
+        createAppointments();
+        updateApptmntSection();
+    });
+};
+
 loadSchedules();
+loadAppointments();
 
 $('#prevPage').on('click', function (e) {
     e.preventDefault();
