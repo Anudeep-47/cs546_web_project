@@ -27,7 +27,7 @@ function bindList() {
         pgItems[i].city
       } ${pgItems[i].state} ${pgItems[i].zip}</h6>
       </div>
-      <div class="col-xs-8 col-sm-3">${pgItems[i].specialty}</div>
+      <div class="col-xs-8 col-sm-3">${pgItems[i].specialty} <br> ${pgItems[i].insurance} </div>
       <div class="col-xs-4 col-sm-2 right">  <img src="/public/uploads/${pgItems[i]._id}.jpg" class="rounded" alt="Profile Picture" style="min-height: fit-content ;height: 100px"></div>
     </div>`
     );
@@ -62,6 +62,10 @@ function pagerInit(p) {
   if(p.currentPage == 0){
     {$('#prev').addClass('disabled');}
     {$('#next').removeClass('disabled');}
+  }
+  if(pager.items.length == pager.itemsPerPage)
+  {
+    {$('#next').addClass('disabled');}
   }
   if (p.itemsPerPage === undefined) {
     p.itemsPerPage = 5;

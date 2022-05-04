@@ -3,13 +3,7 @@ const router = require("express").Router();
 
 router.get('/', async (req, res) => {
         res.render('pages/home', {
-            title: "Home",
-            specialty:[
-                "Acupuncturist",
-                "Addiction Specialist",
-                "Adult Nurse Practitioner",
-              ],
-
+            title: "Home"
         });
     });
 
@@ -18,16 +12,12 @@ router.get('/', async (req, res) => {
         let insurance = req.body.insurance;
         let errors = [];
       
-/*         if (specialty === "Specialty") {
-          errors.push("Search Box cannot be empty");
+        if (!specialty) {
+          specialty = "Specialty";
         }
-        if (insurance === "Choose your Insurance") {
-            errors.push("Search Box cannot be empty");
-          } */
-        if (!insurance || !specialty) {
-            errors.push("Search Box cannot be empty");
+        if (!insurance) {
+          insurance = "Choose your Insurance";
           }
-          
       
         if (errors.length == 0) {
           if (insurance.trim().length == 0 || specialty.trim().length == 0) {

@@ -15,7 +15,8 @@ app.use('/public', express.static(__dirname + "/public"));
 
 
 app.engine('hbs', exphbs.engine({
-    extname: 'hbs'
+    extname: 'hbs',
+    partialsDir: __dirname + '/views/partials/'
 }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, '/views/'))

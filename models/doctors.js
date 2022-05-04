@@ -128,11 +128,29 @@ const checkDoc = async (email, password) => {
     }
 };
 
-const searchDocs = async (specialtySearch, insurance) => {
+const searchDocs = async (specialtySearch, insuranceSearch) => {
     const docs = await getDocs();
     let doc
-    if (specialtySearch == "Specialty") {
+    if (specialtySearch == "Specialty" && (insuranceSearch == "Choose your Insurance" || insuranceSearch == "self")) {
         doc = await docs.find({}, {
+            projection: {
+                password: 0,
+                email: 0
+            }
+        }).toArray();
+    } else if (insuranceSearch !== "Choose your Insurance" && insuranceSearch !== "self" && specialtySearch == "Specialty") {
+        doc = await docs.find({
+            insurance: insuranceSearch
+        }, {
+            projection: {
+                password: 0,
+                email: 0
+            }
+        }).toArray();
+    } else if (specialtySearch !== "Specialty" && (insuranceSearch == "Choose your Insurance" || insuranceSearch == "self")) {
+        doc = await docs.find({
+            specialty: specialtySearch
+        }, {
             projection: {
                 password: 0,
                 email: 0
@@ -140,7 +158,8 @@ const searchDocs = async (specialtySearch, insurance) => {
         }).toArray();
     } else {
         doc = await docs.find({
-            specialty: specialtySearch
+            specialty: specialtySearch,
+            insurance: insuranceSearch
         }, {
             projection: {
                 password: 0,
@@ -150,7 +169,7 @@ const searchDocs = async (specialtySearch, insurance) => {
     }
 
 
-    if (!doc) throw `Cannot find doctor with specialty: ${specialty}`;
+    if (!doc) throw `Cannot find doctor with specialty: ${specialtySearch}`;
     return doc;
 };
 
