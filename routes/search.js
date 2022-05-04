@@ -11,8 +11,12 @@ router.get("/:specialty/:insurance", async (req, res) => {
     const searchdocs = await searchDocs(specialty, insurance);
     res.render("pages/search", {
       title: "Search",
+      searchScript: true,
       docs: searchdocs,
       docsEncoded: encodeURIComponent(JSON.stringify(searchdocs)),
+      helpers: {
+        counter: (n)=>n+1
+      }
     });
   } catch (e) {
     res

@@ -84,6 +84,20 @@
   <script src="/public/js/address.js"></script>
   {{/if}}
 
+  {{#if searchScript}}
+  <script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFYx4flUaipnwrahPBPcFqVLqkKyLwVnE&libraries=places"
+  async defer></script>
+  
+  <script src="/public/js/searchScript.js"></script>
+
+
+
+{{!--   <script>$(function () {
+  initMap();
+});</script> --}}
+  {{/if}}
+  
 </body>
 
 </html>
