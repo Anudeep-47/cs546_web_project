@@ -7,32 +7,7 @@
             <h1>Hi {{auth.firstname}}</h1>
             <h1>Book appointment now with the right Doctor !</h1>
           </div>
-          <div id="row search_bar">
-            <form action="" method="post">
-              <div class="row">
-                <div class="col">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Specialty"
-                    aria-label="Specialty"
-                  />
-                </div>
-                <div class="col">
-                  <select class="form-select" id="insurance" name="insurance">
-                    <option selected>Choose Insurance</option>
-                    <option value="self">Self Payment</option>
-                    {{#each insurances}}
-                      <option value="{{this}}">{{this}}</option>
-                    {{/each}}
-                  </select>
-                </div>
-                <div class="col-1">
-                  <button type="submit" class="btn btn-primary">Search</button>
-                </div>
-              </div>
-            </form>
-          </div>
+          {{> searchbar}}
         </div>
 
       </div>

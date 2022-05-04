@@ -1,0 +1,37 @@
+<div id="row search_bar">
+    <form action="/" method="post">
+        <div class="row">
+            <div class="col">
+
+
+                <select class="form-select" id="specialty" name="specialty">
+                    <option selected>Specialty</option>
+                    <option>Acupuncturist</option>
+                    <option>Addiction Specialist</option>
+                    <option>Adult Nurse Practitioner</option>
+                    {{#each specialty}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="col">
+                <select class="form-select" id="insurance" name="insurance">
+                    <option selected>Choose your Insurance</option>
+                    <option value="self">Self Payment</option>
+                    <option>Aetna</option>
+                    <option>Cigna</option>
+                    <option>United Healthcare</option>
+                    <option>Humana</option>
+                    <option>Kaiser Foundation</option>
+                    <option>Centene Corporation</option>
+                    {{#each insurances}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="col-1">
+                <button type="submit" class="btn btn-primary" href="search.hbs">Search</button>
+            </div>
+        </div>
+    </form>
+</div>

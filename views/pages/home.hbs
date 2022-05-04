@@ -11,38 +11,7 @@
             <h1>Find local doctors</h1>
             <h1>Who take your insurance !</h1>
           </div>
-          <div id="row search_bar">
-            <form action="/" method="post">
-              <div class="row">
-                <div class="col">
- 
-
-              <select class="form-select" id="specialty" name="specialty">
-                <option selected>Specialty</option>
-                {{#each specialty}}
-                <option value="{{this}}">{{this}}</option>
-                {{/each}}
-              </select>
-                </div>
-                <div class="col">
-                  <select class="form-select" id="insurance" name="insurance">
-                    <option selected>Choose your Insurance</option>
-                    <option value="self">Self Payment</option>
-                    <option>Aetna</option>
-                    <option>Cigna</option>
-                    <option>United Healthcare</option>
-                    <option>United Healthcare Oxford</option>
-                    {{#each insurances}}
-                      <option value="{{this}}">{{this}}</option>
-                    {{/each}}
-                  </select>
-                </div>
-                <div class="col-1">
-                  <button type="submit" class="btn btn-primary" href="search.hbs">Search</button>
-                </div>
-              </div>
-            </form>
-          </div>
+          {{> searchbar}}
         </div>
 
       </div>
