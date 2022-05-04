@@ -20,5 +20,8 @@ module.exports = {
   ObjectId,
   MongoError,
   getUsers: getCollectionFn('users'),
-  getDocs: getCollectionFn('doctors')
+  getDocs: getCollectionFn('doctors'),
+  getApps: getCollectionFn('appointments'),
+  getAppointments: getCollectionFn('appointments'),
+  getReviews: getCollectionFn('reviews')
 };
