@@ -9,6 +9,13 @@ const isNameInvalid = (name) => {
   return false;
 };
 
+const isNumberInvalid = (number) => {
+    if (number === undefined || number.trim().length === 0 || !/^[0-9\s]+$/i.test(number.trim())) {
+        return 'Number should only have digits and not be empty';
+    }
+    return false;
+};
+
 const isEmailInvalid = (email) => {
   // regex -> /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   // unicode regex -> /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
@@ -62,6 +69,7 @@ const isAddressInvalid = (address) => {
 
 module.exports = {
   isNameInvalid,
+  isNumberInvalid,
   isEmailInvalid,
   isPasswordInvalid,
   isSpecialtyInvalid,
