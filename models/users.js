@@ -1,17 +1,14 @@
 const bcrypt = require('bcrypt');
-const { ObjectId } = require('mongodb');
 
 const {
     getUsers,
-    getApps,
     MongoError
 } = require('../config/mongoCollections');
 
 const {
     isNameInvalid,
     isEmailInvalid,
-    isPasswordInvalid,
-    isNumberInvalid
+    isPasswordInvalid
 } = require('../helpers/auth_helper');
 
 
@@ -70,56 +67,10 @@ const checkUser = async (email, password) => {
     }
 };
 
-const createAppointment = async (patient_id, firstname, lastname, gender, isElse, number, reason, isNew, time, notes) => {
-    const firstnameError = isNameInvalid(firstname);
-    const lastnameError = isNameInvalid(lastname);
-    const numberError = isNumberInvalid(number);
 
-    try {
-        if (firstnameError || lastnameError || numberError) throw 'Validation error in createAppointment!!';
-
-        const appointments = await getApps();
-        const { acknowledged, insertedId } = await appointments.insertOne({ 
-            _id: new ObjectId(),
-            patient_id: patient_id, 
-            patient_firstname: firstname, 
-            patient_lastname: lastname, 
-            gender: gender, 
-            someone_else: isElse, 
-            phone_number: number, 
-            reason_for_visit: reason, 
-            new_patient: isNew, 
-            appointment_time: time, 
-            notes_to_doctor: notes, 
-            status: "confirmed",
-            created_at: new Date(),
-            updated_at: new Date() });
-        return {
-            userInserted: acknowledged && insertedId, _id: _id
-        };                                    
-    } catch (error) {
-        console.log(error);
-        throw error;
-    }
-};
-
-const getAppointment = async (patient_id) => {
-    try {
-        if (!patient_id || typeof patient_id != 'string' || !ObjectId(patient_id)) throw 'Validation error in getAppointment!!';
-
-        const appointments = await getApps();
-        const appointmentsData = await appointments.findOne({ patient_id: patient_id });
-        return appointmentsData;                                    
-    } catch (error) {
-        console.log(error);
-        throw error;
-    }
-};
 
 module.exports = {
     createUser,
     checkUser,
-    isDuplicateEmail,
-    createAppointment,
-    getAppointment
+    isDuplicateEmail
 }

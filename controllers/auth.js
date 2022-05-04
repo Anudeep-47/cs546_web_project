@@ -3,36 +3,24 @@ const logout = (req, res) => {
     req.session.destroy();
 };
 
-const setAuthInfo = (req, res) => {
-    res.locals.auth = req.session.user ? {
-        ...req.session.user,
-        type: 'user'
-    } : req.session.doctor ? {
-        ...req.session.doctor,
-        type: 'doctor'
-    } : undefined;
-
-};
-
-const authorizeDoctor = (req, doc_info) => {
+const authorizeDoctor = (req, doc_id) => {
     if (req.session.user) {
         delete req.session.user;
     }
-    req.session.doctor = doc_info;
+    req.session.doctor = doc_id;
 };
 
-const authorizeUser = (req, user_info) => {
+const authorizeUser = (req, user_id) => {
     if (req.session.doctor) {
         delete req.session.doctor;
     }
-    req.session.user = user_info;
+    req.session.user = user_id;
 };
 
 
 
 module.exports = {
     logout,
-    setAuthInfo,
     authorizeUser,
     authorizeDoctor
 }

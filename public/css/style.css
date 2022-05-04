@@ -1,46 +1,16 @@
-body {
-  padding-top: 100px;
+
+#login {
+    margin-top: 100px;
 }
 
-.nowrap {
-  white-space: nowrap;
+#signup {
+    margin-top: 100px;
 }
 
-.slot {
-  box-shadow: none !important;
+#home {
+    margin-top: 100px;
 }
 
-.scroll {
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.accordion-button {
-  box-shadow: none !important;
-}
-
-.user-scroll {
-  max-height: 350px;
-  overflow-y: auto;
-}
-
-/* #schdl_section1 {
-  display: block;
-  overflow: auto;
-} */
-
-.img-thumbnail{
-  padding: 0;
-}
-
-p {
-  margin: 0;
-}
-
-textarea {
-  height: 200px;
-}
-
-.star {
-  color: orange;
+#search {
+    margin-top: 100px;
 }
