@@ -196,6 +196,7 @@ router.post("/signup", async (req, res) => {
     console.log(e);
     res.render("pages/signup", {
       script_file: "auth_validation",
+      address_script: "true",
       title: "Sign Up",
       action: "/doctor/signup",
       linkTo: "/doctor/login",
