@@ -9,7 +9,6 @@ router.get("/:json", async (req, res) => {
   let insuranceIn = searchJson.iinsurance;
   let locationIn = searchJson.llocation_coords;
   var query;
-  locationIn = [searchJson.llocation_coords.lng, searchJson.llocation_coords.lat];
 
   if (!specialtyIn) {
     specialtyIn = "Specialty";
@@ -18,7 +17,9 @@ router.get("/:json", async (req, res) => {
     insuranceIn = "Choose your Insurance";
   }
   if (locationIn == false) {
-    locationIn = [74.006, 40.7128];
+    locationIn = [ -74.0059728, 40.7127753];
+  } else{
+    locationIn = [searchJson.llocation_coords.lng, searchJson.llocation_coords.lat];
   }
 
   if (
