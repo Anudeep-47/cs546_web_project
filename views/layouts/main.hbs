@@ -84,13 +84,12 @@
   {{/if}}
 
   {{#if searchScript}}
-  <script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFYx4flUaipnwrahPBPcFqVLqkKyLwVnE&libraries=places"></script>
+ {{!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFYx4flUaipnwrahPBPcFqVLqkKyLwVnE&libraries=places"></script> --}}
   
   <script src="/public/js/searchScript.js"></script>
 
   {{/if}}
-  
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFYx4flUaipnwrahPBPcFqVLqkKyLwVnE&libraries=places&callback=initAutocomplete"></script>
 </body>
 
 </html>

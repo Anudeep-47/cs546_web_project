@@ -29,9 +29,33 @@
                     {{/each}}
                 </select>
             </div>
+            <div class="col">
+                <input aria-label="Enter a location" placeholder="Enter a location" class="form-select" id="locationS"
+                    name="locationS" type="text">
+                </input>
+            </div>
             <div class="col-1">
                 <button type="submit" class="btn btn-primary" href="search.hbs">Search</button>
             </div>
         </div>
     </form>
 </div>
+
+<script>
+
+function initAutocomplete() {
+  // Create the search box and link it to the UI element.
+  const input = document.getElementById("locationS");
+  const searchBox = new google.maps.places.SearchBox(input);
+
+  searchBox.addListener("places_changed", () => {
+    const places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+  });
+}
+//window.initAutocomplete = initAutocomplete;
+
+</script>

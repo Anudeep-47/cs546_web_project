@@ -62,7 +62,7 @@ const getAuthDetails = (req_session) => {
 
 const isAddressInvalid = (address) => {
   if (address === undefined || address === "") {
-    return "Please enter a address";
+    return "Please select a address";
   }
   return false;
 };

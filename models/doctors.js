@@ -72,6 +72,7 @@ const createDoc = async (
     const emailError = isEmailInvalid(email);
     const passwordError = isPasswordInvalid(password);
     const specialtyError = isSpecialtyInvalid(specialty);
+    let location = { type: "Point", coordinates: [coords.lng,coords.lat] }
     try {
         if (
             firstnameError ||
@@ -101,6 +102,7 @@ const createDoc = async (
             zip,
             country,
             coords,
+            location,
         });
         return {
             docInserted: acknowledged && insertedId,
@@ -128,51 +130,111 @@ const checkDoc = async (email, password) => {
     }
 };
 
-const searchDocs = async (specialtySearch, insuranceSearch) => {
-    const docs = await getDocs();
-    let doc
-    if (specialtySearch == "Specialty" && (insuranceSearch == "Choose your Insurance" || insuranceSearch == "self")) {
-        doc = await docs.find({}, {
-            projection: {
-                password: 0,
-                email: 0
-            }
-        }).toArray();
-    } else if (insuranceSearch !== "Choose your Insurance" && insuranceSearch !== "self" && specialtySearch == "Specialty") {
-        doc = await docs.find({
-            insurance: insuranceSearch
-        }, {
-            projection: {
-                password: 0,
-                email: 0
-            }
-        }).toArray();
-    } else if (specialtySearch !== "Specialty" && (insuranceSearch == "Choose your Insurance" || insuranceSearch == "self")) {
-        doc = await docs.find({
-            specialty: specialtySearch
-        }, {
-            projection: {
-                password: 0,
-                email: 0
-            }
-        }).toArray();
-    } else {
-        doc = await docs.find({
-            specialty: specialtySearch,
-            insurance: insuranceSearch
-        }, {
-            projection: {
-                password: 0,
-                email: 0
-            }
-        }).toArray();
-    }
+const searchDocs = async (specialtySearch, insuranceSearch, locationSearch) => {
+  const docs = await getDocs();
+  let gps = [locationSearch.lng,locationSearch.lat]
+  let doc;
+  if (
+    specialtySearch == "Specialty" &&
+    (insuranceSearch == "Choose your Insurance" || insuranceSearch == "self")
+  ) {
+    doc = await docs
+      .find(
+        {},
+        {
+          projection: {
+            password: 0,
+            email: 0,
+          },
+        }
+      )
+      .toArray();
+  } else if (
+    insuranceSearch !== "Choose your Insurance" &&
+    insuranceSearch !== "self" &&
+    specialtySearch == "Specialty"
+  ) {
+    doc = await docs
+      .find(
+        {
+          insurance: insuranceSearch,
+        },
+        {
+          projection: {
+            password: 0,
+            email: 0,
+          },
+        }
+      )
+      .toArray();
+  } else if (
+    specialtySearch !== "Specialty" &&
+    (insuranceSearch == "Choose your Insurance" || insuranceSearch == "self")
+  ) {
+    doc = await docs
+      .find(
+        {
+          specialty: specialtySearch,
+        },
+        {
+          projection: {
+            password: 0,
+            email: 0,
+          },
+        }
+      )
+      .toArray();
+  } else {
+    doc = await docs
+      .find(
+        {
+          specialty: specialtySearch,
+          insurance: insuranceSearch,
+        },
+        {
+          projection: {
+            password: 0,
+            email: 0,
+          },
+        }
+      )
+      .toArray();
+  }
 
-
-    if (!doc) throw `Cannot find doctor with specialty: ${specialtySearch}`;
-    return doc;
+  if (!doc) throw `Cannot find doctor with specialty: ${specialtySearch}`;
+  return doc;
 };
 
+async function searchD(query, location) {
+    const pipeline = [
+      {
+        $geoNear: {
+          near: {
+            type: "Point",
+            coordinates: location,
+          },
+          distanceField: "calcDistance",
+          query: query,
+          spherical: true,
+        },
+      },
+      {
+        $project: {
+          email: 0,
+          password: 0,
+        },
+      },
+    ];
+  
+    let docs = await getDocs();
+    const aggCursor = docs.aggregate(pipeline).toArray();
+    return aggCursor
+
+/*     await aggCursor.forEach((element) => {
+        array.push(element)
+    }); */
+
+  }
 
 module.exports = {
     createDoc,
@@ -181,4 +243,5 @@ module.exports = {
     getDoctor,
     updateDoctor,
     searchDocs,
+    searchD,
 };
