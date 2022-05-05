@@ -141,8 +141,15 @@ router.post("/signup", async (req, res) => {
     var { data } = await axios.get(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${fadd}&key=AIzaSyBFYx4flUaipnwrahPBPcFqVLqkKyLwVnE`
     );
+    if(data.results[0]){
     data = data.results[0].geometry.location;
     return data;
+  } else{
+    data = { lat: 0, lng: 0}
+    addressError = "Please enter address again, GPS coordinates not found"
+  }
+
+  return data
   }
 
   geoloc = await getloc(fullAddress);
@@ -200,6 +207,11 @@ router.post("/signup", async (req, res) => {
       title: "Sign Up",
       action: "/doctor/signup",
       linkTo: "/doctor/login",
+      specialty: [
+        "Acupuncturist",
+        "Addiction Specialist",
+        "Adult Nurse Practitioner",
+      ],
       error: {
         firstnameError,
         lastnameError,
