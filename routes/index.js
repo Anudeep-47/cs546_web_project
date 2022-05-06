@@ -4,6 +4,7 @@ const homeRoutes = require('./home');
 const searchRoutes = require('./search');
 const appointmentRoutes = require('./appointments');
 const reviewRoutes = require('./reviews');
+const patientRoutes = require('./patients');
 
 const {
     getAuthDetails
@@ -31,6 +32,7 @@ const constructor = (app) => {
     app.use('/search', searchRoutes);
     app.use('/appointment', appointmentRoutes);
     app.use('/review', reviewRoutes);
+    app.use('/patient', patientRoutes);
     
     app.use('/', homeRoutes);
 

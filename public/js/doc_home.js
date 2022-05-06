@@ -73,7 +73,7 @@ const createSlotElements = (schdl, allSlotTimes) => {
         if (schdl.breakTimes.includes(tSlot)) {
             slotButton.addClass('slot btn btn-outline-danger active btn-sm rounded-0 my-1');
         } else if (schdl.workTimes.includes(tSlot)) {
-            slotButton.addClass('slot btn btn-outline-success active btn-sm rounded-0 my-1');
+            slotButton.addClass('slot btn btn-success active btn-sm rounded-0 my-1');
             slotButton.prop('disabled', true);
         } else {
             slotButton.addClass('slot btn btn-outline-success btn-sm rounded-0 my-1');
@@ -312,7 +312,7 @@ $('.startEndDay').on('change', function () {
 
 $(document).on({
     mouseenter: function () {
-        if(!$(this).prop('disabled')){
+        if (!$(this).prop('disabled')) {
             $(this).removeClass('btn-outline-success');
             $(this).addClass('btn-outline-danger');
         }
@@ -324,7 +324,7 @@ $(document).on({
         }
     },
     click: function () {
-        if(!$(this).prop('disabled')){
+        if (!$(this).prop('disabled')) {
             const parentId = $(this).parent().attr('id');
             const day = parentId[parentId.length - 1];
             const dayStr = scheduleArray[day - 1 + PAGE * 7];
@@ -358,4 +358,8 @@ $('#saveSchedules').on('click', function (e) {
     }, (response) => {
         console.log(response);
     });
+});
+
+$('#patDetailsBtn').on('click', function () {
+    window.location.href = `/patient/${mainApptmnt._id}`;
 });

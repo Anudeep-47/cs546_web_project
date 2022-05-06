@@ -24,6 +24,11 @@ body {
   overflow-y: auto;
 }
 
+.pat-scroll {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
 /* #schdl_section1 {
   display: block;
   overflow: auto;

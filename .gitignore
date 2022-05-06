@@ -111,3 +111,6 @@ dist
 # .DS_Store Mac files
 .DS_Store
 */.DS_Store
+
+# config settings file
+config/settings.json
