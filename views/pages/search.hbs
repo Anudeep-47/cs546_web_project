@@ -1,10 +1,9 @@
-
-<div class="container-fluid h-100">
+<div class="container h-100">
 
 
   <div class="row justify-content-center h-100">
-    <div class="col-md-8 ">
-      {{> searchbar}}
+          {{> searchbar}}
+    <div class="col-md-7 ">
       <div id="myList" class="list-group">
         {{!-- {{#each docs}}
         <a href="/doctor/{{this._id}}" class="list-group-item list-group-item-action"> {{counter @index}}
@@ -14,17 +13,13 @@
         {{/each}} --}}
       </div>
       <div class="row">
-        <div class="col-6">
-          <a class="list-group-item" href="" onclick="prevPage(); return false;" id="prev">«</a>
-        </div>
-        <div class="col-6">
-          <a class="list-group-item" href="" onclick="nextPage(); return false;" id="next">»</a>
-        </div>
+        <a class="list-group-item rounded col-6" href="" onclick="prevPage(); return false;" id="prev">«</a>
+        <a class="list-group-item rounded col-6" href="" onclick="nextPage(); return false;" id="next">»</a>
       </div>
     </div>
-  <div id="map" class="col-md-4 h-100">
+    <div id="map" class="col-md-5">
+    </div>
   </div>
-</div>
 </div>
 
 <script>

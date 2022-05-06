@@ -35,7 +35,7 @@ const constructor = (app) => {
     app.use('/review', reviewRoutes);
     app.use('/patient', patientRoutes);
     
-    app.use('/', new_homeRoutes);
+    app.use('/new', new_homeRoutes);
     app.use('/', homeRoutes);
 
     app.use('*', (req, res) => {
