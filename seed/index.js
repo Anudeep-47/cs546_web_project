@@ -87,7 +87,7 @@ const createDoc = async () => {
 };
 
 async function main() {
-  for (var i = 0; i < 1000; i++) {
+  for (var i = 0; i < 10; i++) {
     await createDoc();
   }
   const doctorDB = await getDocs();
