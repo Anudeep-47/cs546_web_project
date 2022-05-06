@@ -34,7 +34,7 @@ body {
   overflow: auto;
 } */
 
-.img-thumbnail{
+.img-thumbnail {
   padding: 0;
 }
 
@@ -48,4 +48,14 @@ textarea {
 
 .star {
   color: orange;
+}
+
+
+
+.carousel-control-prev, .carousel-control-next{
+  width: 2%;
+}
+
+.home_text {
+  font-size: 50px;
 }

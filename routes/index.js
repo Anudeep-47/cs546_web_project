@@ -1,6 +1,7 @@
 const userRoutes = require('./users');
 const doctorRoutes = require('./doctors');
 const homeRoutes = require('./home');
+const new_homeRoutes = require('./new_home');
 const searchRoutes = require('./search');
 const appointmentRoutes = require('./appointments');
 const reviewRoutes = require('./reviews');
@@ -34,6 +35,7 @@ const constructor = (app) => {
     app.use('/review', reviewRoutes);
     app.use('/patient', patientRoutes);
     
+    app.use('/', new_homeRoutes);
     app.use('/', homeRoutes);
 
     app.use('*', (req, res) => {
