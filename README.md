@@ -1,2 +1,31 @@
 # CS546 - B Final Web Project
-This is the CS546 Web Programming Course Project by Group 22 in Spring 22 semester at Stevens Institute of Technology
+
+## **Project By group 22**
+
+Main Contributors
+
+1. Anudeep Pala 
+2. Krithika G M 
+3. Harshal Panpaliya 
+4. Aishwarya Bartakke 
+5. Pavan Kalavakuri
+
+## Introduction
+
+This is a Group 22 Final Project for Web Programming I at Stevens Institute of Technology.
+This is a web based application which allows patients to search for doctors based on location and help them schedule an appointment with the doctor. This application helps patients to keep track of their medical history and also allows patients ask for any health-related queries to the doctors.
+
+## Core Features (Implemented All)
+
+1. **Landing Page** - This page is a public page which lists all the top rated doctors and allows the users to search for doctors with specific conditions.
+2. **Search Page** - This is a public page which allows the users to search for doctors based on type of doctor, location, and type of insurance. The application allows users to view avilability of doctors and location of doctors through map.
+3. **Home Page** - This  page is a private page for every user to view details of his  or her past appointments or to create a new appointment.
+4. **Doctor Page** - The doctors page is a public page  where users can view all details of a doctor and reviews of other users and also schedule an appointment.  
+5. **Patient page** - The patients page allows doctor to  see the list of previous appointments of a particular patient and he or she can also have an option to book a follow-up appointment at a later date.
+6. **Booking page** - The booking page allows patients to view and edit the time slots and also provides an option to book for someone else and send an confirmation email to the patient with the booking details.
+
+
+
+
+
+
