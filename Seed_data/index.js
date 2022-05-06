@@ -29,124 +29,124 @@ const main = async () => {
   
 
 
-  // try {
-  //   doctor1 = await doctors.create("Krithika", "Gandlaur" , "Female" , "kgm@stevens.edu" , "2016758976", "232 Hancock" , "Jersey City" , "NJ", "07307","4568568976","4576864579", "MBBS" , "Dentist","Orthopedic", ["Aetna", "Tata", "Reliance"],5,"12:30PM","10:00AM");
-  //   console.log("doctor details inserted succesfully");
-  // } catch (error) {
-  //   console.log(error);
-  // }
-    // try {
-    //   doctor1 = await doctors.get(doctor1._id);
-    //   console.log(doctor1);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+  try {
+    doctor1 = await doctors.create("Krithika", "Gandlaur" , "Female" , "kgm@stevens.edu" , "2016758976", "232 Hancock" , "Jersey City" , "NJ", "07307","4568568976","4576864579", "MBBS" , "Dentist","Orthopedic", ["Aetna", "Tata", "Reliance"],5,"12:30PM","10:00AM");
+    console.log("doctor details inserted succesfully");
+  } catch (error) {
+    console.log(error);
+  }
+    try {
+      doctor1 = await doctors.get(doctor1._id);
+      console.log(doctor1);
+    } catch (error) {
+      console.log(error);
+    }
 
-  // try {
-  //   doctor2 = await doctors.create("Nikhil", "Bhoneja" , "Male" , "nikhilb@stevens.edu" , "2078958976", "232 Grand st" , "Hoboken" , "NJ", "07030","8768568976","1476864579", "MBBS" , "Gupt", "Orthopedic",["Aetna", "Idea", "Reliance"],5,"10:30PM","10:00AM");
-  //   console.log("doctors details inserted successfully..");
-  // } catch (error) {
-  //   console.log(error);
-  // }
-    // try {
-    //   doctor2 = await doctors.get(doctor2._id);
-    //   console.log(doctor2);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+  try {
+    doctor2 = await doctors.create("Nikhil", "Bhoneja" , "Male" , "nikhilb@stevens.edu" , "2078958976", "232 Grand st" , "Hoboken" , "NJ", "07030","8768568976","1476864579", "MBBS" , "Gupt", "Orthopedic",["Aetna", "Idea", "Reliance"],5,"10:30PM","10:00AM");
+    console.log("doctors details inserted successfully..");
+  } catch (error) {
+    console.log(error);
+  }
+    try {
+      doctor2 = await doctors.get(doctor2._id);
+      console.log(doctor2);
+    } catch (error) {
+      console.log(error);
+    }
 
-  // try {
-  //   doctor3 = await doctors.create("James", "Bond" , "Male" , "james@nhu.in" , "9167868976", "456 Hacensek" , "Edison" , "NJ", "07080","1238568976","5616864579", "BDS MBBS" , "Orthodontist","Cardiologist", ["Tata", "Reliance"],4,"1:00PM","12:00PM");
-  //   console.log("doctor details inserted succesfully");
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  // try {
-  //   doctor4 = await doctors.create("Preet", "Kumar" , "Male" , "pkumar@max.in" , "2015674325", "2 Bergaline ave" , "Union City" , "NJ", "071456","7868568976","8716864579", "BDS" , "Orthodpedic","ENT", ["Aetna","apollo","LIC","Tata", "Reliance"],3,"5:30PM","3:00PM");
-  //   console.log("doctor details inserted succesfully");
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  // try {
-  //   doctor5 = await doctors.create("Praveen", "Gupta" , "Male" , "pskkumar@apollo.in" , "9175674325", "456 Tonnevel ave" , "North Bergan" , "NJ", "871456","9968568976","0016864579", "MBBS" , "Dentist","ENT", ["LIC","Tata", "Reliance"],5,"6:30PM","3:00PM");
-  //   console.log("doctor details inserted succesfully");
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  // try {
-  //   user1 = await users.createUser(
-  //     "Krithika",
-  //     "Gandlaur",
-  //     "kgm@stevens.edu",
-  //     "krithika123",
-  //     "female",
-  //     "11-09-1997",
-  //     "2017365305",
+  try {
+    doctor3 = await doctors.create("James", "Bond" , "Male" , "james@nhu.in" , "9167868976", "456 Hacensek" , "Edison" , "NJ", "07080","1238568976","5616864579", "BDS MBBS" , "Orthodontist","Cardiologist", ["Tata", "Reliance"],4,"1:00PM","12:00PM");
+    console.log("doctor details inserted succesfully");
+  } catch (error) {
+    console.log(error);
+  }
+  try {
+    doctor4 = await doctors.create("Preet", "Kumar" , "Male" , "pkumar@max.in" , "2015674325", "2 Bergaline ave" , "Union City" , "NJ", "071456","7868568976","8716864579", "BDS" , "Orthodpedic","ENT", ["Aetna","apollo","LIC","Tata", "Reliance"],3,"5:30PM","3:00PM");
+    console.log("doctor details inserted succesfully");
+  } catch (error) {
+    console.log(error);
+  }
+  try {
+    doctor5 = await doctors.create("Praveen", "Gupta" , "Male" , "pskkumar@apollo.in" , "9175674325", "456 Tonnevel ave" , "North Bergan" , "NJ", "871456","9968568976","0016864579", "MBBS" , "Dentist","ENT", ["LIC","Tata", "Reliance"],5,"6:30PM","3:00PM");
+    console.log("doctor details inserted succesfully");
+  } catch (error) {
+    console.log(error);
+  }
+  try {
+    user1 = await users.createUser(
+      "Krithika",
+      "Gandlaur",
+      "kgm@stevens.edu",
+      "krithika123",
+      "female",
+      "11-09-1997",
+      "2017365305",
       
-  //   );
-  //   console.log("user details inserted succesfully");
-  // } catch (error) {
-  //   console.log(error);
-  // }
+    );
+    console.log("user details inserted succesfully");
+  } catch (error) {
+    console.log(error);
+  }
 
-  // try {
-  //   user2 = await users.createUser(
-  //     "saket",
-  //     "Vishnu",
-  //     "sv@stevens.edu",
-  //     "saket123",
-  //     "male",
-  //     "01-11-1997",
-  //     "2017365306",
+  try {
+    user2 = await users.createUser(
+      "saket",
+      "Vishnu",
+      "sv@stevens.edu",
+      "saket123",
+      "male",
+      "01-11-1997",
+      "2017365306",
       
-  //   );
-  //   console.log("user details inserted successfully..");
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  // try {
-  //   user3 = await users.createUser(
-  //     "laila",
-  //     "jane",
-  //     "Laila123",
-  //     "laila@stevens.edu",
-  //     "female",
-  //     "19-01-2007",
-  //     "2017365307",
+    );
+    console.log("user details inserted successfully..");
+  } catch (error) {
+    console.log(error);
+  }
+  try {
+    user3 = await users.createUser(
+      "laila",
+      "jane",
+      "Laila123",
+      "laila@stevens.edu",
+      "female",
+      "19-01-2007",
+      "2017365307",
       
-  //   );
-  //   console.log("user details inserted succesfully");
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  // try {
-  //   user4 = await users.createUser(
-  //     "mike",
-  //     "Ross",
-  //     "mike@stevens.edu",
-  //     "Mike123",
-  //     "male",
-  //     "15-04-2017",
-  //     "2017365308",
-  //   );
-  //   console.log("user details inserted succesfully");
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  // try {
-  //   user5 = await users.createUser(
-  //     "Annie",
-  //     "Formoso",
-  //     "Annie@stevens.edu",
-  //     "Annie123",
-  //     "female",
-  //     "10-10-1987",
-  //     "2017365309",
-  //   );
-  //   console.log("user details inserted succesfully");
-  // } catch (error) {
-  //   console.log(error);
-  // }
+    );
+    console.log("user details inserted succesfully");
+  } catch (error) {
+    console.log(error);
+  }
+  try {
+    user4 = await users.createUser(
+      "mike",
+      "Ross",
+      "mike@stevens.edu",
+      "Mike123",
+      "male",
+      "15-04-2017",
+      "2017365308",
+    );
+    console.log("user details inserted succesfully");
+  } catch (error) {
+    console.log(error);
+  }
+  try {
+    user5 = await users.createUser(
+      "Annie",
+      "Formoso",
+      "Annie@stevens.edu",
+      "Annie123",
+      "female",
+      "10-10-1987",
+      "2017365309",
+    );
+    console.log("user details inserted succesfully");
+  } catch (error) {
+    console.log(error);
+  }
   try {
     review1 = await reviews.createReviews(
       "62740df8d1d458314e1d810b",
@@ -210,32 +210,32 @@ const main = async () => {
   } catch (error) {
     console.log(error);
   }
-  // try {
-  //   Appointment1 = await appointments.createUser(
-  //     "Annie",
-  //     "Formoso",
-  //     "Annie123",
-  //     "female",
-  //     "2017365309",
-  //     "Annie@stevens.edu"
-  //   );
-  //   console.log("user details inserted succesfully");
-  // } catch (error) {
-  //   console.log(error);
-  // }
+  try {
+    Appointment1 = await appointments.createUser(
+      "Annie",
+      "Formoso",
+      "Annie123",
+      "female",
+      "2017365309",
+      "Annie@stevens.edu"
+    );
+    console.log("user details inserted succesfully");
+  } catch (error) {
+    console.log(error);
+  }
 
-  // try {
-  //   let all_doctors = await reviews.getAll();
-  //   console.log(all_doctors);
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  // try {
-  //   let all_user = await reviews.getAll();
-  //   console.log(all_user);
-  // } catch (error) {
-  //   console.log(error);
-  // }
+  try {
+    let all_doctors = await reviews.getAll();
+    console.log(all_doctors);
+  } catch (error) {
+    console.log(error);
+  }
+  try {
+    let all_user = await reviews.getAll();
+    console.log(all_user);
+  } catch (error) {
+    console.log(error);
+  }
 
  
 };
