@@ -1,0 +1,50 @@
+body {
+	font-family: monospace;
+	background-color: rgb(201, 159, 183);
+}
+main {
+	margin-left: 100px;
+	margin-right: 100px;
+	background-color: rgb(201, 159, 183);
+}
+form {
+	position: relative;
+	margin-top: 100px;
+	
+	float: left;
+	width: 20%;
+	font-size: 15px;
+	font-weight: 100;
+	background-color: rgb(155, 203, 218);
+}
+header {
+	text-align: center;
+	color: rgb(1 0 88);
+	border-bottom: 1px solid #000;
+}
+h1 {
+	text-align: center;
+	color: rgb(1 0 88);
+	border-bottom: 1px solid #000;
+}
+#errorhandled {
+	color: rgb(204, 0, 0);
+}
+
+.articleX {
+	float: left;
+	width: 70%;
+}
+
+.articleX:nth-child(2){
+	clear: left;
+}
+
+.article {
+	float: left;
+	width: 50% ;
+}
+  
+.article:nth-child(2) {
+	clear: left;
+}
