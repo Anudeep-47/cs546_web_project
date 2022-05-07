@@ -32,6 +32,10 @@ This is a web based application which allows patients to search for doctors base
 4. **Patient Home page** - This feature allows patients to download priscripts from the past appointments.
 5. **Booking page** - This feature allows patients to book for an online video consultation  where the patients can book and visit certain doctor who accepts online consultation.
 
+## Installation Process
+
+This project requires Node.js to run all the files.
+
 
 
 
