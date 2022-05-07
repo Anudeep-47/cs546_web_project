@@ -217,9 +217,13 @@ async function searchD(query, location) {
   ];
 
   let docs = await getDocs();
-  const aggCursor = docs.aggregate(pipeline).toArray();
-  return aggCursor
-
+  let isempty = await docs.find({}).toArray()
+  if(isempty.length !== 0){
+    const aggCursor = docs.aggregate(pipeline).toArray();
+    return aggCursor
+  }else{
+    throw `Doctors not found` 
+  }
   /*     await aggCursor.forEach((element) => {
           array.push(element)
       }); */

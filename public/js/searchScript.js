@@ -30,9 +30,9 @@ function bindList() {
       <div class="col-xs-8 col-sm-3">${pgItems[i].specialty} <br> ${
         pgItems[i].insurance
       } </div>
-      <div class="col-xs-4 col-sm-2 right">  <img src="/public/uploads/${
+      <div class="col-xs-4 col-sm-2 right">  <img src="/public/img/${
         pgItems[i]._id
-      }.jpg" class="rounded" alt="Profile Picture" style="min-height: fit-content ;height: 100px"></div>
+      }.png" class="rounded" alt="Profile Picture" style="min-height: fit-content ;height: 100px"></div>
     </div>`
     );
 
