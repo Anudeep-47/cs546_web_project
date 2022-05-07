@@ -1,9 +1,12 @@
-const doctors = require("./controllers/doctor_public.js");
-const users = require("./controllers/users.js");
-const reviews = require("./controllers/reviews.js");
-const appointments = require("./controllers/appointments.js");
-const connection = require("./config/mongoConnection");
-const { connectToDb } = require("./config/mongoConnection");
+const doctors = require("./doctor_public.js");
+const users = require("./users.js");
+const reviews = require("./reviews.js");
+//const appointments = require("./appointments.js");
+const connection = require("./../config/mongoConnection");
+const { connectToDb } = require("./../config/mongoConnection");
+const e = require("express");
+const docJson = require("./doctors.json");
+const { getDocs } = require("../config/mongoCollections.js");
 
 const main = async () => {
   let doctor1 = undefined;
@@ -26,9 +29,28 @@ const main = async () => {
   let review3 = undefined;
   let review4 = undefined;
   let review5 = undefined;
+
   
+    for (var i = 0; i < docJson.length; i++) {
+      await doctors.create(
+        docJson[i].firstname,
+        docJson[i].lastname,
+        docJson[i].email,
+        docJson[i].address,
+        docJson[i].city,
+        docJson[i].state,
+        docJson[i].zip,
+        docJson[i].country,
+        docJson[i].gender,
+        docJson[i].phone_number
+      );
+    }
+    const doctorDB = await getDocs();
+    await doctorDB.createIndex( { location: "2dsphere" } )
 
 
+
+/*   
   try {
     doctor1 = await doctors.create("Krithika", "Gandlaur" , "Female" , "kgm@stevens.edu" , "2016758976", "232 Hancock" , "Jersey City" , "NJ", "07307","4568568976","4576864579", "MBBS" , "Dentist","Orthopedic", ["Aetna", "Tata", "Reliance"],5,"12:30PM","10:00AM");
     console.log("doctor details inserted succesfully");
@@ -72,7 +94,7 @@ const main = async () => {
     console.log("doctor details inserted succesfully");
   } catch (error) {
     console.log(error);
-  }
+  } */
   try {
     user1 = await users.createUser(
       "Krithika",
