@@ -24,6 +24,14 @@ This is a web based application which allows patients to search for doctors base
 5. **Patient page** - The patients page allows doctor to  see the list of previous appointments of a particular patient and he or she can also have an option to book a follow-up appointment at a later date.
 6. **Booking page** - The booking page allows patients to view and edit the time slots and also provides an option to book for someone else and send an confirmation email to the patient with the booking details.
 
+## Extra Features
+
+1. **Doctor page** -Provides a chat feature to let patients chat online with a doctor for immediate medical assistance.
+2. **Forum page** - This is a  separate forum page where all users can post new health queries or search from existing posted question.
+3. **Patient page** - The note feature is designed  to upload or create prescription for an appointment with the patient.
+4. **Patient Home page** - This feature allows patients to download priscripts from the past appointments.
+5. **Booking page** - This feature allows patients to book for an online video consultation  where the patients can book and visit certain doctor who accepts online consultation.
+
 
 
 
