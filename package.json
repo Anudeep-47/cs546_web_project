@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
-    "seed": "npm i ./seed/ && node ./seed/index.js && npm remove  * ./seed/"
+    "seed": "npm i ./Seed_data/ && node ./Seed_data/index.js",
+    "seedImg": "npm i ./Seed_data/ && cd ./Seed_data/ && node images.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.3",
     "mongodb": "^4.5.0",
-    "seed": "file:seed"
+    "seed_data": "file:Seed_data"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
