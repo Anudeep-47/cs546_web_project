@@ -1,0 +1,123 @@
+<link rel='stylesheet' href='public/css/style.css'/>
+    {{!-- <button id='likesButton' >Likes</button>
+    <button id='profileButton' hidden>Profile</button>
+    <button id='recentsButton'>Recents</button> --}}
+    <div id="profile">
+        {{!-- <label for="edit">Edit:</label><br>
+        <button id="edit" name="edit">Edit Profile</button> --}}
+        {{!-- <h1>{{user.username}}</h1>
+        <br> --}}
+        <br>
+        <img class='photo' alt='{{user.username}} profile picture' src='/public/images/{{user.profilePicture}}' />
+        <br>
+        <br>
+        <h1>Dr. {{user.firstName}}  {{user.lastName}}</h1>
+        <h2>{(user.speciality}}</h2>
+        <p>{{Address[City]}}, {{Address[State]}}</p>
+        <br>
+        <br>
+        <p><b>About </b>{{user.bio}}</p>
+        <br>
+        {{!-- <p><b>Favorite Recipe: </b>{{user.favoriteRecipe}}</p>
+        <br> --}}
+        <br>
+        <h2>insurance</h2>
+        <div class='table'>
+        <ul class='recipeDisplay'>
+                {{#each recipes}}
+                    <li class='recipeList'> 
+                    <img class='recipeListImage' alt='{{_id}} picture' src='/public/images/{{recipePicture}}'/>{user.insurance}<br>
+                    <div class="recipeContent">
+                    <a href="/recipe/post/{{_id}}">{{recipeName}}</a>
+                    <p>Created By <a href='/users/profile/{{posterId}}'>{{posterUsername}}</a></p>
+                    </div>
+                    </li>
+                    {{else}}
+                    <p class="not-found">We're sorry, but this user has not posted any recipes.</p>
+                {{/each}}     
+        </ul>
+        </div>
+    </div>
+    <div id='likes' hidden>
+        <h1>Book an Appointment</h1>
+        <br>
+        <br>
+        
+        <br>
+        <h2> {{user.firstName}}  {{user.lastName}}</h2>
+        <br>
+        <br>
+        <h2>Liked Recipes:</h2>
+        <div class='table'>
+        <ul class='recipeDisplay'>
+                {{#each likes}}
+                    <li class='recipeList'> 
+                    <a  href="/recipe/post/{{_id}}"><img class='recipeListImage' alt='{{_id}} picture' src='/public/images/{{recipePicture}}'/></a><br>
+                    <div class="recipeContent">
+                    <a href="/recipe/post/{{_id}}">{{recipeName}}</a>
+                    <p>Created By <a href='/users/profile/{{posterId}}'>{{posterUsername}}</a></p>
+                    </div>
+                    </li>
+                
+                    {{else}}
+                    <p class="not-found">We're sorry, but this user has not liked any recipes.</p>
+                {{/each}}     
+        </ul>
+        </div>
+    </div>
+     {{!--<div id='editPage' hidden>
+        <form method="POST" action="{{user._id}}/edit" id="formForEditUser" enctype="multipart/form-data">UPDATE YOUR PROFILE
+        <br><br>
+        <label for="profilePicture" >Profile Picture</label>
+        <br>
+        <input type="file" id="profilePicture" name="profilePicture" accept='image/png, image/jpg, image/jpeg'><br>
+        <br>
+        <label for="bio" >Bio</label>
+        <br>
+        <input type="text" id="bio" name="bio" placeholder="Tell us about yourself..." >
+        <br>
+        <br>
+        <label for="favoriteRecipe" >Favorite Recipe</label>
+        <input type="text" id="favoriteRecipe" name="favoriteRecipe" placeholder="What is your favorite recipe...">
+        <br>
+        <br>
+        <input type="submit" value="Submit"  id="submit5">
+        </form>
+        <div id="errorcheck">
+            {{#if error}}
+            <p>{{error}}</p>
+            {{/if}}
+        </div>
+        <input type="submit" id='cancel' name='cancel' value="Cancel" >
+        <br>
+        <br>
+    </div>
+    <div id='recents' hidden>
+        <h1>{{user.username}}</h1>
+        <br>
+        <br>
+        <img class='photo' alt='{{user.username}} profile picture' src='/public/images/{{user.profilePicture}}' />
+        <br>
+        <br>
+        <h2> {{user.firstName}}  {{user.lastName}}</h2>
+        <br>
+        <br>
+        <h2>Recently Viewed Recipes:</h2>
+        <div class='table'>
+        <ul class='recipeDisplay'>
+                {{#each recentlyViewed}}
+                    <li class='recipeList'> 
+                    <a  href="/recipe/post/{{_id}}"><img class='recipeListImage' alt='{{_id}} picture' src='/public/images/{{recipePicture}}'/></a><br>
+                    <div class="recipeContent">
+                    <a href="/recipe/post/{{_id}}">{{recipeName}}</a>
+                    <p>Created By <a href='/users/profile/{{posterId}}'>{{posterUsername}}</a></p>
+                    </div>
+                    </li>
+                    {{else}}
+                    <p class="not-found">You have not recently viewed any recipes.</p>
+                {{/each}}     
+        </ul>
+        </div> --}}
+    </div>
+    <a href="/loggedIn">Back to Feed</a>
+<script src="/public/js/ClientSideUpdateProfile.js"></script>
