@@ -15,7 +15,6 @@ router.get("/", async (req, res) => {
   docs06 = doctors.slice(20,23)
 
 
-  console.log(doctors)
   res.render("pages/home", {
     title: "Home",
     docs1: docs01,
