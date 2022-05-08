@@ -61,10 +61,39 @@ textarea {
 }
 
 #map {
-  height: initial;
+  height:initial
 }
 
-.list-group-item-action {
-  min-height: 7em;
-  position: sticky;
+
+#recent_review .collapse, .module .collapsing {
+  height: 3rem;  /* [NUM_OF_LINES] x [LINE_HEIGHT] */
+}
+
+#recent_review .collapse {
+  position: relative;  /* For ...'s content absolute positioning */
+  display: block;
+  overflow: hidden;
+}
+
+#recent_review .collapse:before {
+  content: ' ...';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+#recent_review .collapse.show {
+  height: auto;  /* You need to reset the height when not collapsed */
+}
+
+#recent_review .collapse.show:before {
+  display: none;  /* Of course you don't want to display ... */
+}
+
+#recent_review a.collapsed:after {
+  content: 'show more';
+}
+
+#recent_review a:not(.collapsed):after {
+  content: 'show less';
 }
