@@ -92,6 +92,10 @@ async function create(
     "Acupuncturist",
     "Addiction Specialist",
     "Adult Nurse Practitioner",
+    "Dentist",
+    "Dermatologist",
+    "Primary Care",
+    "Eye Doctor"
   ];
   let insurance_array = [
     "Aetna",
