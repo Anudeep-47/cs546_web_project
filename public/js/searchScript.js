@@ -22,12 +22,12 @@ function bindList() {
     option.html(
       `<div class="row">
       <div class="col-xs-12 col-sm-4">
-        <h5 class="visible-xs  style="height: 20px;"">${i + 1} ${
+        <p id='DocName' class="visible-xs  style="height: 20px;"">${i + 1} ${
         pgItems[i].firstname
-      } ${pgItems[i].lastname}</h5>
-        <h6 class="visible-xs" style="height: 40px;">${pgItems[i].address} ${
+      } ${pgItems[i].lastname}</p>
+        <p id='DocAddress' class="visible-xs" style="height: 40px;">${pgItems[i].address} ${
         pgItems[i].apartment
-      } ${pgItems[i].city} ${pgItems[i].state} ${pgItems[i].zip}</h6>
+      } ${pgItems[i].city} ${pgItems[i].state} ${pgItems[i].zip}</p>
       </div>
       <div class="col-xs-8 col-sm-3">${pgItems[i].specialty} <br> ${
         pgItems[i].insurance

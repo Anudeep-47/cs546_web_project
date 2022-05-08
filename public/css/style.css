@@ -102,3 +102,10 @@ textarea {
 #recent_review a:not(.collapsed):after {
   content: 'show less';
 }
+
+#DocName {
+  font-size: 1.3em;
+}
+#DocAddress {
+  font-size: 1em;
+}
