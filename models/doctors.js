@@ -133,9 +133,9 @@ const checkDoc = async (email, password) => {
   }
 };
 
-const searchDocs = async (specialtySearch, insuranceSearch, locationSearch) => {
+const searchDocs = async (specialtySearch, insuranceSearch) => {
   const docs = await getDocs();
-  let gps = [locationSearch.lng, locationSearch.lat]
+  
   let doc;
   if (
     specialtySearch == "Specialty" &&
