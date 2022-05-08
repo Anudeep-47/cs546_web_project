@@ -364,7 +364,7 @@
   const decodedJson_doc = decodeURIComponent(`{{{location_c}}}`);
   const location =  JSON.parse(decodedJson_doc);
   const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
+    zoom: 10,
     center: location,
   });
   const marker = new google.maps.Marker({
