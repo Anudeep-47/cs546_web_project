@@ -7,7 +7,50 @@ let selectApptmnt = undefined;
 
 $('#form-error').hide();
 
+const createRemainingSchedule = (count, curDate, schedules) => {
+    while (count--) {
+        const daySchedule = {
+            day: curDate.format('DD'),
+            month: curDate.format('MM'),
+            year: curDate.format('Y'),
+            dayOfWeek: curDate.format('ddd'),
+            monthName: curDate.format('MMM'),
+            available: false,
+            startDay: '09:00',
+            endDay: '18:00',
+            sessionTime: 30,
+            breakTimes: [],
+            workTimes: []
+        }
+        schedules.push(daySchedule);
+        curDate.add(1, 'days');
+    }
+};
 
+const checkAndFillSchedules = (schedules) => {
+    let index = 0;
+    let count = 14;
+    let curDate = moment();
+    while (index < schedules.length) {
+        if (count < 1) {
+            schedules.splice(index);
+            break;
+        }
+        let curDateStr = `${curDate.format('Y')}-${curDate.format('MM')}-${curDate.format('DD')}`;
+        let schdlObj = schedules[index];
+        let schdlDateStr = `${schdlObj.year}-${schdlObj.month}-${schdlObj.day}`;
+        if (curDateStr === schdlDateStr) {
+            count--;
+            curDate.add(1, 'days');
+            index++;
+        } else {
+            schedules.splice(index, 1);
+        }
+    }
+    if (count > 0) {
+        createRemainingSchedule(count, curDate, schedules);
+    }
+};
 
 const generateSlotTimes = (sessionTime) => {
     const allSlotTimes = [];
@@ -87,6 +130,7 @@ const selectScheduleSection = () => {
         schedules
     }) => {
         console.log(schedules);
+        checkAndFillSchedules(schedules);
         createScheduleElements(schedules);
         displaySchedule(PAGE);
     });
