@@ -185,7 +185,7 @@ const main = async () => {
     review2 = await reviews.createReviews(
       "62740f54f8b312d1a69e718b",
       "62745ebaab61859f455215e6",
-      "Dr nikhil was very patient towards his clients and was very efficint in hsi treatment",
+      "Dr nikhil was very patient towards his clients and was very efficint in his treatment treatment",
       "4.4"
       
     );
