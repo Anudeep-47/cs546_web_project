@@ -1,13 +1,15 @@
 const doc_id = $('#id').val().trim();
+let timeSlot = $('#time').val().trim();
 let scheduleElements = {};
 let scheduleArray = [];
 let PAGE = 0;
 let selectApptmnt = undefined;
 
-
+$('#availability').hide();
 $('#form-error').hide();
-
-
+$('#name-error').hide();
+$('#age-error').hide();
+$('#phone-error').hide();
 
 const generateSlotTimes = (sessionTime) => {
     const allSlotTimes = [];
@@ -94,6 +96,10 @@ const selectScheduleSection = () => {
 
 selectScheduleSection();
 
+$('#edit').on('click', function (e) {
+    e.preventDefault();
+    $('#availability').toggle();
+});
 
 $('#prevPage').on('click', function (e) {
     e.preventDefault();
@@ -127,7 +133,8 @@ $(document).on({
             if (selectApptmnt) selectApptmnt.slotElement.removeClass('active');
             selectApptmnt = {
                 slotElement: $(this),
-                slotDateTime: moment(`${schdl.year}-${schdl.month}-${schdl.day} ${tSlot}`)
+                slotDateTime: moment(`${schdl.year}-${schdl.month}-${schdl.day} ${tSlot}`),
+                slotDuration: schdl.sessionTime
             }
             $(this).addClass('active');
             $('#labelNewApptmnt').text(selectApptmnt.slotDateTime.format("MMMM Do, h:mm a"));
@@ -136,32 +143,64 @@ $(document).on({
 }, ".slot");
 
 
-$('#slot_form').submit(function (e) {
+$('#book_form').submit(function (e) {
     e.preventDefault();
-    if ($('#insurance').val() === 'choose') {
-        $('#form-error').text('Please select an insurance!');
-        $('#form-error').show();
-    } else if ($('#reason').val() === 'reason') {
-        $('#form-error').text('Please select a reason!');
-        $('#form-error').show();
-    } else if (!selectApptmnt) {
-        $('#form-error').text('Please select a time slot!');
-        $('#form-error').show();
-    } else {
-        $('#form-error').hide();
-        const timeSlot = JSON.parse(JSON.stringify(selectApptmnt.slotDateTime.toDate()));
-        const bookingDetails = {
-            doc_id,
-            insurance: $('#insurance').val().trim(),
-            reason: $('#reason').val().trim(),
-            new_patient: $('input[name="newPatient"]').val().trim(),
-            timeSlot
-        };
-        $.post('/doctor/appointment', {
-            bookingDetails
-        }, (response) => {
-            console.log(response);
-            window.location.href = response.url;
-        });
-    }
+    let firstname = undefined;
+    let lastname = undefined;
+    let age = undefined;
+    let phone = undefined;
+    if ($('#firstname').val().trim().length === 0) {
+        $('#name-error').text('Name cannot be empty!');
+        $('#name-error').show();
+    } else firstname = $('#firstname').val().trim();
+    if ($('#lastname').val().trim().length === 0) {
+        $('#name-error').text('Name cannot be empty!');
+        $('#name-error').show();
+    } else lastname = $('#lastname').val().trim();
+    console.log($('#age').val());
+    if ($('#age').val() === undefined) {
+        $('#age-error').text('Age cannot be empty!');
+        $('#age-error').show();
+    } else age = $('#age').val();
+    if (!$('#phone').val().match(/\d/g) || $('#phone').val().match(/\d/g).length !== 10) {
+        $('#phone-error').text('Phone number is invalid!');
+        $('#phone-error').show();
+    } else phone = $('#phone').val();
+    if (!firstname || !lastname || !age || !phone) return;
+    $('#name-error').hide();
+    $('#age-error').hide();
+    $('#phone-error').hide();
+
+    const someone_else = $('#isElse').val();
+    const gender = $('#gender').val();
+    const insurance = $('#insurance').val();
+    const reason = $('#reason').val();
+    const new_patient = $('input[name="newPatient"]').val();
+    const notes = $('#notesText').val();
+    const duration = selectApptmnt ? selectApptmnt.slotDuration : 30;
+    timeSlot = selectApptmnt ? JSON.parse(JSON.stringify(selectApptmnt.slotDateTime.toDate())) : timeSlot;
+
+    const bookingDetails = {
+        doc_id,
+        firstname,
+        lastname,
+        age,
+        phone,
+        someone_else,
+        gender,
+        insurance,
+        reason,
+        new_patient,
+        notes,
+        duration,
+        timeSlot
+    };
+    $.post('/user/booking', {
+        bookingDetails
+    }, (response) => {
+        console.log(response);
+        $('#info').text(`Successfully Booked Appointment for ${moment(timeSlot).format("MMMM Do, h:mm a")}`);
+        $('#form').hide();
+    });
+
 });

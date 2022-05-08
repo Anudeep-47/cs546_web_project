@@ -140,7 +140,7 @@ const createAppointmentElements = (parent, apptmnts) => {
         const div2 = $("<div>").addClass("row");
         const div3_1 = $("<div>").addClass("col-3");
         const div3_2 = $("<div>").addClass("col");
-        const img_url = "/public/img/doctor_male.jpeg";
+        const img_url = `/public/img/${apptmnt.doctor_id}.png`;
         const img = $("<img>").addClass("img-thumbnail border-secondary").attr("src", img_url);
         const p1 = $("<p>").text(apptmnt.doctor_name);
         const p2 = $("<p>").addClass("small text-muted").text(apptmnt.doctor_specialty);
@@ -159,6 +159,7 @@ const createAppointments = () => {
 const updateApptmntSection = () => {
     if (mainApptmnt) {
         $("#no_apptmnt_h3").hide();
+        $('#doc_img').attr('src', `/public/img/${mainApptmnt.doctor_id}.png`);
         $('#doc_name').text(mainApptmnt.doctor_name);
         $('#doc_spclty').text(mainApptmnt.doctor_specialty);
         $('#doc_addr').text(mainApptmnt.doctor_address);

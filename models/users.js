@@ -1,9 +1,8 @@
 const bcrypt = require('bcrypt');
-const { ObjectId } = require('mongodb');
 
 const {
     getUsers,
-    getApps,
+    ObjectId,
     MongoError
 } = require('../config/mongoCollections');
 
@@ -14,6 +13,16 @@ const {
     isNumberInvalid
 } = require('../helpers/auth_helper');
 
+
+const getUser = async (user_id) => {
+    const _id = ObjectId(user_id);
+    const users = await getUsers();
+    let user = await users.findOne({
+        _id
+    });
+    if (user) return user;
+    return undefined;
+};
 
 const isDuplicateEmail = async (email) => {
     const users = await getUsers();
@@ -120,6 +129,5 @@ module.exports = {
     createUser,
     checkUser,
     isDuplicateEmail,
-    createAppointment,
-    getAppointment
+    getUser
 }

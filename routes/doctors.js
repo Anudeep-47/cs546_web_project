@@ -275,12 +275,13 @@ router.post('/appointment', async (req, res) => {
     new_patient,
     timeSlot
   } = bookingDetails;
-  if(!doc_id || !insurance || !reason || !new_patient || !timeSlot){
+  if (!doc_id || !insurance || !reason || !new_patient || !timeSlot) {
     res.redirect('/');
   } else {
     req.session.apptmnt = bookingDetails;
-    res.redirect('/booking');
-    
+    res.json({
+      url: '/user/booking'
+    });
   }
 });
 

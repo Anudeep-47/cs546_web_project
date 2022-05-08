@@ -12,7 +12,8 @@ const addReview = async (reviewData) => {
         appointment_id: reviewData.apptmnt_id
     }, {
         '$set': {
-            ...reviewData
+            ...reviewData,
+            updated_at: JSON.parse(JSON.stringify(new Date()))
         }
     }, {
         upsert: true
