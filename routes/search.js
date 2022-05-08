@@ -56,16 +56,24 @@ router.get("/", async (req, res) => {
 
   try {
     const searchdocs = await searchD(query, locationIn);
-    res.render("pages/search", {
-      title: "Search",
-      searchScript: true,
-      docs: searchdocs,
-      docsEncoded: encodeURIComponent(JSON.stringify(searchdocs)),
-      helpers: {
-        counter: (n) => n + 1,
-      },
-      locError : locationError,
-    });
+    if(searchdocs.length == 0){
+      res.render("pages/search", {
+        title: "Search",
+        searchError: "No Doctors found. Please enter different Speciality or Insurance and try again",
+        locError : locationError,
+      });
+    }else{
+      res.render("pages/search", {
+        title: "Search",
+        searchScript: true,
+        docs: searchdocs,
+        docsEncoded: encodeURIComponent(JSON.stringify(searchdocs)),
+        helpers: {
+          counter: (n) => n + 1,
+        },
+        locError : locationError,
+      });
+    }
   } catch (e) {
     res
       .status(404)
@@ -83,6 +91,9 @@ router.get("/", async (req, res) => {
 
 async function getloc(fadd) {
   if(fadd == ''){
+    return false
+  }
+  if(fadd == undefined){
     return false
   }
   var { data } = await axios.get(

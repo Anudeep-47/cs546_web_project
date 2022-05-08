@@ -13,10 +13,15 @@
                     <option>Dermatologist</option>
                     <option>Primary Care</option>
                     <option>Eye Doctor</option>
-                    {{#each specialty}}
+{{!--                     {{#each specialty}}
                     <option value="{{this}}">{{this}}</option>
-                    {{/each}}
+                    {{/each}} --}}
                 </select>
+                                    {{#if searchError}}
+                    <span id="name-error" class="text-danger">{{{searchError}}}</span>
+                    {{else}}
+                    <span id="name-error" class="text-danger"></span>
+                    {{/if}}
             </div>
             <div class="col">
                 <select class="form-select" id="insurance" name="insurance">
@@ -28,9 +33,9 @@
                     <option>Humana</option>
                     <option>Kaiser Foundation</option>
                     <option>Centene Corporation</option>
-                    {{#each insurances}}
+{{!--                     {{#each insurances}}
                     <option value="{{this}}">{{this}}</option>
-                    {{/each}}
+                    {{/each}} --}}
                 </select>
             </div>
             <div class="col">
