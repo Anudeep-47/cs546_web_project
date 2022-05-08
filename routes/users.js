@@ -15,7 +15,9 @@ const {
 const {
     createUser,
     checkUser,
-    isDuplicateEmail
+    isDuplicateEmail,
+    createAppointment,
+    getAppointment
 } = require('../models/users');
 
 const {
@@ -44,6 +46,78 @@ router.get('/home', async (req, res) => {
             title: "Patient Home",
             newApptmnts,
             pastApptmnts
+        });
+    }
+});
+
+router.get('/booking', async (req, res) => {
+    if (req.session.user) {
+        let patient_id = req.session.user;
+
+        try {
+            const appointmentsData = await getAppointment(patient_id);
+            if (appointmentsData) {
+                res.render("pages/booking-form", { data: appointmentsData });
+            } else {
+                res.render("pages/booking-form", {
+                    isNew: ['Yes', 'No'],
+                    isElse: ['Yes', 'No'],
+                    gender: ['Male', 'Female', 'Prefer not to answer']
+                });
+            }
+        } catch (e) {
+            console.log(e);
+            res.render('pages/booking-form', {
+                title: "Booking",
+                error: {
+                    patient_id
+                }
+            });
+        }
+    } else {
+        res.redirect("/user/login");
+    }
+});
+
+router.post('/booking', async (req, res) => {
+
+    let patient_id = req.session.user;
+    let data = req.body;
+    let firstname = req.body.firstname.trim();
+    let lastname = req.body.lastname.trim();
+    let gender = req.body.gender.trim();
+    let isElse = req.body.isElse.trim();
+    let number = req.body.number.trim();
+    let reason = req.body.reason.trim();
+    let isNew = req.body.isNew.trim();
+    let time = req.body.time.trim();
+    let notes = req.body.notes.trim();
+
+    const firstnameError = isNameInvalid(firstname);
+    const lastnameError = isNameInvalid(lastname);
+    const numberError = isNumberInvalid(number);
+
+    try {
+        if (firstnameError || lastnameError || numberError) throw 'Validation error in createAppointment!!';
+
+        const { userInserted } = await createAppointment(patient_id, firstname, lastname, gender, isElse, number, reason, isNew, time, notes);
+        if (userInserted) {
+            res.redirect("user/booking");
+        } else {
+            res.render('pages/booking-form', {
+                title: "Booking",
+                error: "Internal Server Error"
+            });
+        }
+    } catch (e) {
+        console.log(e);
+        res.render('pages/booking-form', {
+            title: "Booking",
+            error: {
+                firstnameError,
+                lastnameError,
+                numberError
+            }
         });
     }
 });

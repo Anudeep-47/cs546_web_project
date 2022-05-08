@@ -30,7 +30,6 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.3",
     "mongodb": "^4.5.0",
-    "nodemailer": "^6.7.5",
     "seed_data": "file:Seed_data"
   },
   "devDependencies": {

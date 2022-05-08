@@ -39,7 +39,7 @@
             <div class="mb-4">
               <label for="isElse" class="form-label">Someone else</label>
               <select class="form-select" id="isElse" name="isElse">
-                {{#if data.someone_else}}
+                {{#if data.gender}}
                 <option selected>{{data.someone_else}}</option>
                 {{else}}
                 <option selected>Someone else</option>
@@ -60,16 +60,6 @@
               {{/if}}
             </div>
             <div class="mb-4">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" name="email" class="form-control" id="email" value="{{data.email}}"
-                required />
-              {{#if error.emailError}}
-              <span id="email-error" class="text-danger">{{error.emailError}}</span>
-              {{else}}
-              <span id="email-error" class="text-danger"></span>
-              {{/if}}
-            </div>
-            <div class="mb-4">
               <label for="reason" class="form-label">Reason for visit</label>
               <input type="reason" name="reason" class="form-control" id="reason" value="{{data.reason_for_visit}}"
                 required />
@@ -77,7 +67,7 @@
             <div class="mb-4">
               <label for="isNew" class="form-label">New patient</label>
               <select class="form-select" id="isNew" name="isNew">
-                {{#if data.new_patient}}
+                {{#if data.gender}}
                 <option selected>{{data.new_patient}}</option>
                 {{else}}
                 <option selected>New patient</option>
@@ -99,15 +89,10 @@
             {{#if error}}
             <span id="error" hidden></span>
             {{/if}}
-            <button id="edit" name="edit" type="button" class="btn btn-primary mb-4">Edit</button>
-            <button id="save" name="save" type="submit" class="btn btn-primary mb-4">Save</button>
+            <button type="submit" class="btn btn-primary mb-4">Submit</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
-  </script>
-<script src="/public/js/booking.js"></script>

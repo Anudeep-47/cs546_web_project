@@ -84,43 +84,11 @@ const deleteAppointment = async (id) => {
     };
 };
 
-const sendEmail = async (data, msg) => {
-
-    var body = msg + " for " + data.firstname + " " + data.lastname + ".\nTime: " + data.appointment_time;
-
-    var transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: "medical.consultation.01@gmail.com",
-        pass: "onlinemedicalconsultation"
-      }
-    });
-
-    var mailOptions = {
-      from: `"Online Medical Consultation" medical.consultation.01@gmail.com`,
-      to : `"${data.email}"`,
-      subject: "Online Medical Consultation Appointment Details",
-      text: "",
-      html: body
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
-    });
-  };
-
 module.exports = {
     getUserAppointments,
     getDocAppointments,
     createAppointment,
     updateAppointment,
     deleteAppointment,
-    getAppointment,
-    sendEmail
+    getAppointment
 };
