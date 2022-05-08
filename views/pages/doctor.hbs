@@ -92,7 +92,7 @@
         </div>
         <div id="location" class="row py-3">
           <h4>Office Location</h4>
-          <div id="map" class="col">
+          <div id="map" class="col" style="height: 200px">
 
           </div>
           <div class="col-4">
@@ -358,3 +358,19 @@
     </div>
   </div>
 </div>
+
+<script>
+  function initAutocomplete() {
+  const decodedJson_doc = decodeURIComponent(`{{{location_c}}}`);
+  const location =  JSON.parse(decodedJson_doc);
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: location,
+  });
+  const marker = new google.maps.Marker({
+    position: location,
+    map: map,
+  });
+}
+
+</script>

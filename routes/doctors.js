@@ -38,9 +38,11 @@ router.get("/:id", async (req, res) => {
   const doc_reviews = await getDocReviews(id);
   doc_data.reviews = doc_reviews;
   const page_data = prepDocPageData(doc_data);
+  let location_coords = doc_data.coords
   res.render('pages/doctor', {
     title: "Doctor",
     script_file: "doc_public",
+    location_c : encodeURIComponent(JSON.stringify(location_coords)),
     id,
     helpers: {
       star(num, rating) {
