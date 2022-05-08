@@ -45,7 +45,23 @@ const isPasswordInvalid = (password) => {
 const isSpecialtyInvalid = (specialty) => {
   if (specialty === undefined || specialty === "Specialty") {
     return "Please choose a specialty";
-  }
+  } 
+  let specialties= [
+    "Acupuncturist",
+    "Addiction Specialist",
+    "Adult Nurse Practitioner",
+    "Dentist",
+    "Dermatologist",
+    "Primary Care",
+    "Eye Doctor",
+  ]
+  specialties.forEach(element => {
+    if(specialty == element){
+      return false
+    } else{
+      return "Incorrect Specialty, Please choose a specialty from Options"
+    }
+  });
   return false;
 };
 
@@ -67,6 +83,46 @@ const isAddressInvalid = (address) => {
   return false;
 };
 
+const isSpecialtyInvalidSearch = (specialty) => {
+  let specialties = [
+    "Acupuncturist",
+    "Addiction Specialist",
+    "Adult Nurse Practitioner",
+    "Dentist",
+    "Dermatologist",
+    "Primary Care",
+    "Eye Doctor",
+    "Specialty",
+  ];
+  let is_SpecialtyInvalid;
+  specialties.forEach((element) => {
+    if (specialty == element) {
+      is_SpecialtyInvalid = false;
+    }
+  });
+  return is_SpecialtyInvalid;
+};
+
+const isInsuranceInvalidSearch = (insurance) => {
+  let insurances = [
+    "Choose your Insurance",
+    "self",
+    "Aetna",
+    "Cigna",
+    "United Healthcare",
+    "Humana",
+    "Kaiser Foundation",
+    "Centene Corporation",
+  ];
+  let is_InsuranceInvalid;
+  insurances.forEach((element) => {
+    if (insurance == element) {
+      is_InsuranceInvalid = false;
+    }
+  });
+  return is_InsuranceInvalid;
+};
+
 module.exports = {
   isNameInvalid,
   isNumberInvalid,
@@ -75,4 +131,6 @@ module.exports = {
   isSpecialtyInvalid,
   getAuthDetails,
   isAddressInvalid,
+  isInsuranceInvalidSearch,
+  isSpecialtyInvalidSearch
 };

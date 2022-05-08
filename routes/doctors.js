@@ -100,6 +100,10 @@ router.get("/signup", async (req, res) => {
         "Acupuncturist",
         "Addiction Specialist",
         "Adult Nurse Practitioner",
+        "Dentist",
+        "Dermatologist",
+        "Primary Care",
+        "Eye Doctor",
       ],
     });
   }
@@ -228,6 +232,10 @@ router.post("/signup", async (req, res) => {
         "Acupuncturist",
         "Addiction Specialist",
         "Adult Nurse Practitioner",
+        "Dentist",
+        "Dermatologist",
+        "Primary Care",
+        "Eye Doctor",
       ],
       error: {
         firstnameError,

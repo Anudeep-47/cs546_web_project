@@ -13,15 +13,16 @@
                     <option>Dermatologist</option>
                     <option>Primary Care</option>
                     <option>Eye Doctor</option>
-{{!--                     {{#each specialty}}
+                    {{!-- {{#each specialty}}
                     <option value="{{this}}">{{this}}</option>
                     {{/each}} --}}
                 </select>
-                                    {{#if searchError}}
-                    <span class="text-danger">{{{searchError}}}</span>
-                    {{else}}
-                    <span class="text-danger"></span>
-                    {{/if}}
+                {{#if incorrectSpecialty}}
+                <span class="text-danger">{{{incorrectSpecialty}}}</span>
+                {{else}}
+                <span class="text-danger"></span>
+                {{/if}}
+
             </div>
             <div class="col">
                 <select class="form-select" id="insurance" name="insurance">
@@ -33,19 +34,24 @@
                     <option>Humana</option>
                     <option>Kaiser Foundation</option>
                     <option>Centene Corporation</option>
-{{!--                     {{#each insurances}}
+                    {{!-- {{#each insurances}}
                     <option value="{{this}}">{{this}}</option>
                     {{/each}} --}}
                 </select>
+                {{#if incorrectInsurance}}
+                <span class="text-danger">{{{incorrectInsurance}}}</span>
+                {{else}}
+                <span class="text-danger"></span>
+                {{/if}}
             </div>
             <div class="col">
                 <input aria-label="Enter a location" placeholder="Enter a location" class="form-select" id="locationS"
                     name="locationS" type="text">
-                    {{#if locError}}
-                    <span class="text-danger">{{locError}}</span>
-                    {{else}}
-                    <span class="text-danger"></span>
-                    {{/if}}
+                {{#if locError}}
+                <span class="text-danger">{{locError}}</span>
+                {{else}}
+                <span class="text-danger"></span>
+                {{/if}}
             </div>
             <div class="col-1">
                 <button type="submit" class="btn btn-primary">Search</button>
@@ -56,19 +62,19 @@
 
 <script>
 
-function initAutocomplete() {
-  // Create the search box and link it to the UI element.
-  const input = document.getElementById("locationS");
-  const searchBox = new google.maps.places.SearchBox(input);
+    function initAutocomplete() {
+        // Create the search box and link it to the UI element.
+        const input = document.getElementById("locationS");
+        const searchBox = new google.maps.places.SearchBox(input);
 
-  searchBox.addListener("places_changed", () => {
-    const places = searchBox.getPlaces();
+        searchBox.addListener("places_changed", () => {
+            const places = searchBox.getPlaces();
 
-    if (places.length == 0) {
-      return;
+            if (places.length == 0) {
+                return;
+            }
+        });
     }
-  });
-}
-//window.initAutocomplete = initAutocomplete;
+    //window.initAutocomplete = initAutocomplete;
 
 </script>
