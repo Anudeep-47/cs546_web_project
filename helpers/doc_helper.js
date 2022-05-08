@@ -25,8 +25,8 @@ const prepDocPageData = (doc) => {
         qualification: doc.qualification,
         location: doc.location,
         rating: doc.rating,
-        recent_review: doc.reviews[doc.reviews.length-1].review,
-        recent_review_time: doc.reviews[doc.reviews.length-1] ? doc.reviews[doc.reviews.length-1].review_time : undefined,
+        //recent_review: doc.reviews[doc.reviews.length-1].review,
+        //recent_review_time: doc.reviews[doc.reviews.length-1] ? doc.reviews[doc.reviews.length-1].review_time : undefined,
 
     };
     return page_data;

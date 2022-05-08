@@ -115,7 +115,6 @@ async function create(
   const randomQualification = Math.floor(Math.random() * qualification_array.length);
   const randomRating = getRandomInt(1,6)
 
-  let reviews_arr = []
   let rating_num = randomRating
 
   const new_doctor = {
@@ -138,7 +137,6 @@ async function create(
     phone_number: phone_number_num,
     qualification: qualification_array[randomQualification],
     rating: rating_num,
-    reviews: reviews_arr,
     //    primary_speciality: p_speciality,
     //    secondary_speciality: s_speciality,
   };
