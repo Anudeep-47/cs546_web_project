@@ -1,5 +1,7 @@
 var pager = {};
 pager.items = stores;
+if(JSON.stringify(stores) !== "{}")
+{
 pager.itemsPerPage = 6;
 pagerInit(pager);
 
@@ -109,3 +111,5 @@ function pagerInit(p) {
 $(function () {
   bindList();
 });
+
+}
