@@ -105,7 +105,13 @@ textarea {
 
 #DocName {
   font-size: 1.3em;
+  font-weight: 500;
 }
-#DocAddress {
+#DocSpecialty {
   font-size: 1em;
+
+}
+#DocQualification {
+  font-size: 1em;
+  font-weight: 300;
 }
