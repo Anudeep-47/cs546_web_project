@@ -23,11 +23,15 @@ const prepDocPageData = (doc) => {
         reviews_count: doc.reviews.length,
         reviews: doc.reviews,
         qualification: doc.qualification,
+        specialty: doc.specialty,
         location: doc.location,
+        address: doc.address,
+        city: doc.city,
+        state: doc.state,
+        zip: doc.zip,
         rating: doc.rating,
-        recent_review: doc.reviews[doc.reviews.length-1].review,
+        recent_review: doc.reviews[doc.reviews.length-1] ? doc.reviews[doc.reviews.length-1].review : undefined,
         recent_review_time: doc.reviews[doc.reviews.length-1] ? doc.reviews[doc.reviews.length-1].review_time : undefined,
-
     };
     return page_data;
 };

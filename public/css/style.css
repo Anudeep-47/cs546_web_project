@@ -61,7 +61,12 @@ textarea {
 }
 
 #map {
-  height:initial
+  height: initial;
+}
+
+.list-group-item-action {
+  min-height: 7em;
+  position: sticky;
 }
 
 
