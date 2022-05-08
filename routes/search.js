@@ -2,6 +2,8 @@ const express = require("express");
 const { isInsuranceInvalidSearch, isSpecialtyInvalidSearch } = require("../helpers/auth_helper");
 const router = express.Router();
 const axios = require("axios").default;
+var xss = require("xss");
+
 
 
 const { searchD } = require("../models/doctors");
@@ -15,10 +17,10 @@ const { searchD } = require("../models/doctors");
 router.get("/", async (req, res) => {
   let searchJson = req.query;
   if (JSON.stringify(searchJson) !== "{}") {
-    let specialtyIn = searchJson.Specialty;
-    let insuranceIn = searchJson.Insurance;
+    let specialtyIn = xss(searchJson.Specialty);
+    let insuranceIn = xss(searchJson.Insurance);
     let locationError;
-    let locationIn = await getloc(searchJson.Location);
+    let locationIn = await getloc(xss(searchJson.Location));
     var query;
 
     let incorrectSpecialty = isSpecialtyInvalidSearch(specialtyIn);
@@ -139,9 +141,9 @@ async function getloc(fadd) {
 }
 
 router.post("/", async (req, res) => {
-  let specialty = req.body.specialty;
-  let insurance = req.body.insurance;
-  let location = req.body.locationS;
+  let specialty = xss(req.body.specialty);
+  let insurance = xss(req.body.insurance);
+  let location = xss(req.body.locationS);
 
   let incorrectSpecialty = isSpecialtyInvalidSearch(specialty);
   let incorrectInsurance = isInsuranceInvalidSearch(insurance);
