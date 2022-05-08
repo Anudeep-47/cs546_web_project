@@ -1,12 +1,3 @@
-<html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
-      <link rel="stylesheet" href="public/css/home.css">
-    </head>
-
-    <body>
 
       <section id="sec1">
         <div id="user_home" class="container">
@@ -69,7 +60,7 @@
                                             <li class="text-right list-inline-item">
                                               <a id="anchor"
                                                 class="card-block stretched-link text-decoration-none"
-                                                href="/doctor/{{this.doc_id}}">View Availability</a>
+                                                href="/doctor/{{this._id}}">View Availability</a>
                                                 </li>
 
                                         </div>
@@ -77,11 +68,7 @@
                                     </div>
                                 </div>
                                         {{/each}}
-
-                              
-                              
-
-         
+                                    
 
                             </div>
                         </div>
@@ -104,7 +91,7 @@
                                             <li class="text-right list-inline-item">
                                               <a id="anchor"
                                                 class="card-block stretched-link text-decoration-none"
-                                                href="/doctor/{{this.doc_id}}">View Availability</a>
+                                                href="/doctor/{{this._id}}">View Availability</a>
                                                 </li>
 
                                         </div>
@@ -133,7 +120,7 @@
                                             <li class="text-right list-inline-item">
                                               <a id="anchor"
                                                 class="card-block stretched-link text-decoration-none"
-                                                href="/doctor/{{this.doc_id}}">View Availability</a>
+                                                href="/doctor/{{this._id}}">View Availability</a>
                                                 </li>
 
                                         </div>
@@ -197,7 +184,7 @@
                                             <li class="text-right list-inline-item">
                                               <a id="anchor"
                                                 class="card-block stretched-link text-decoration-none"
-                                                href="/doctor/{{this.doc_id}}">View Availability</a>
+                                                href="/doctor/{{this._id}}">View Availability</a>
                                                 </li>
 
                                         </div>
@@ -215,7 +202,6 @@
                         </div>
 
                         
-                        
                         <div class="carousel-item">
                             <div class="row">
                               {{#each docs5}}
@@ -232,7 +218,7 @@
                                             <li class="text-right list-inline-item">
                                               <a id="anchor"
                                                 class="card-block stretched-link text-decoration-none"
-                                                href="/doctor/{{this.doc_id}}">View Availability</a>
+                                                href="/doctor/{{this._id}}">View Availability</a>
                                                 </li>
 
                                         </div>
@@ -257,15 +243,12 @@
                                             <p><strong>{{this.specialty}}</strong></p>
                                             <p>{{this.city}}, {{this.state}}</p>
                                             <p>Rating:{{this.rating}}</p>
-
                                             <li class="text-right list-inline-item">
                                               <a id="anchor"
                                                 class="card-block stretched-link text-decoration-none"
-                                                href="/doctor/{{this.doc_id}}">View Availability</a>
+                                                href="/doctor/{{this._id}}">View Availability</a>
                                                 </li>
-
                                         </div>
-
                                     </div>
                                 </div>
                                 {{/each}}
@@ -363,15 +346,4 @@
         </div>
       </section>
 
-      
-    </body>
-
-    {{!-- <footer>
-      <section>
-        <div class="container my-4">
-          <div class=""
-        </div>
-      </section>
-    </footer> --}}
-</html>
 

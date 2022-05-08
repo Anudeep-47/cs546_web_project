@@ -1,6 +1,6 @@
 const { searchDocs } = require("../models/doctors");
-
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 
 router.get("/", async (req, res) => {
 
@@ -22,7 +22,8 @@ router.get("/", async (req, res) => {
     docs3: docs03,
     docs4: docs04,
     docs5: docs05,
-    docs6: docs06
+    docs6: docs06,
+    homepagecss: true
   });
 });
 
