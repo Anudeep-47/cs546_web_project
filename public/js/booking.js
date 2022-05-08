@@ -1,4 +1,5 @@
 const doc_id = $('#id').val().trim();
+const user_id = $('#user_id').val().trim();
 let timeSlot = $('#time').val().trim();
 let scheduleElements = {};
 let scheduleArray = [];
@@ -228,6 +229,7 @@ $('#book_form').submit(function (e) {
     timeSlot = selectApptmnt ? JSON.parse(JSON.stringify(selectApptmnt.slotDateTime.toDate())) : timeSlot;
 
     const bookingDetails = {
+        user_id,
         doc_id,
         firstname,
         lastname,

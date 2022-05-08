@@ -69,6 +69,7 @@ router.get('/booking', async (req, res) => {
         const doctor = await getDoctor(doc_id);
         const user = await getUser(user_id);
         const data = {
+            user_id,
             firstname: user.firstname,
             lastname: user.lastname,
             insurance,
@@ -120,11 +121,11 @@ router.get('/booking', async (req, res) => {
 });
 
 router.post('/booking', async (req, res) => {
-    if (!req.session.user) {
+    if (!req.session.user && !req.session.doctor) {
         res.redirect('/user/login');
     } else {
-        const user_id = req.session.user.id;
         const {
+            user_id,
             doc_id,
             firstname,
             lastname,

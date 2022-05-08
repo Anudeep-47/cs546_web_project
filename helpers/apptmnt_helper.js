@@ -20,8 +20,8 @@ const splitAppointments = (apptmnts) => {
     };
 };
 
-const prepareAppointments = (apptmnts) => {
-    apptmnts.forEach(apptmnt => {
+const prepareAppointments = (apptmnts, others) => {
+    apptmnts.forEach((apptmnt, index) => {
         apptmnt._id = apptmnt._id.toString();
         apptmnt.time_string = moment(apptmnt.time).format("MMMM Do, h:mm a");
         const {
@@ -31,6 +31,11 @@ const prepareAppointments = (apptmnts) => {
             zip
         } = apptmnt.doctor_location;
         apptmnt.doctor_address = `${address}, ${city}, ${state}, ${zip}`;
+        if(others && others[index]){
+            Object.keys(others[index]).forEach(key => {
+                apptmnt[key] = others[index][key];
+            });
+        }
     });
 };
 

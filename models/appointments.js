@@ -19,8 +19,19 @@ const getDocAppointments = async (docId) => {
     let docAppointments = apptmnts.find({
         doctor_id: docId
     }).toArray();
-    if (!docAppointments) throw `Failed to get appointments for user id: ${docId}`;
+    if (!docAppointments) throw `Failed to get appointments for doctor id: ${docId}`;
     return docAppointments;
+};
+
+const getPatAppointments = async (doctor_id, user_id, patient_name) => {
+    const apptmnts = await getAppointments();
+    let patApptmnts = apptmnts.find({
+        doctor_id,
+        user_id,
+        patient_name
+    }).toArray();
+    if (!patApptmnts) throw `Failed to get patient appointments for doctor id: ${doctor_id}, user id: ${user_id} and patient name: ${patient_name}`;
+    return patApptmnts;
 };
 
 const createAppointment = async (apptmnt) => {
@@ -63,7 +74,7 @@ const updateAppointment = async (id, {
 const getAppointment = async (id) => {
     const _id = ObjectId(id);
     const apptmnts = await getAppointments();
-    const apptmnt = apptmnts.find({
+    const apptmnt = await apptmnts.find({
         _id
     }).toArray();
     if (!apptmnt) throw `Failed to get appointment with id: ${id}`;
@@ -87,6 +98,7 @@ const deleteAppointment = async (id) => {
 module.exports = {
     getUserAppointments,
     getDocAppointments,
+    getPatAppointments,
     createAppointment,
     updateAppointment,
     deleteAppointment,
