@@ -34,7 +34,17 @@ This is a web based application which allows patients to search for doctors base
 
 ## Installation Process
 
-This project requires Node.js to run all the files.
+This project requires [Node.js](https://nodejs.org/en/) to run all the files.
+
+Install all the dependencies and Dev dependencies and start over.
+
+```
+{
+  "",
+  "",
+  ""
+}
+```
 
 
 
