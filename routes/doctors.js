@@ -18,7 +18,38 @@ const {
   updateDoctor,
 } = require("../models/doctors");
 
-const { authorizeDoctor } = require("../controllers/auth");
+const {
+  authorizeDoctor
+} = require("../controllers/auth");
+const {
+  getDocReviews
+} = require("../models/reviews");
+const {
+  prepDocPageData
+} = require("../helpers/doc_helper");
+
+router.get("/:id", async (req, res) => {
+  let id = req.params.id;
+  if (!id || id.trim().length === 0) {
+    res.render('/');
+  }
+  id = id.trim();
+  const doc_data = await getDoctor(id);
+  const doc_reviews = await getDocReviews(id);
+  doc_data.reviews = doc_reviews;
+  const page_data = prepDocPageData(doc_data);
+  res.render('pages/doctor', {
+    title: "Doctor",
+    script_file: "doc_public",
+    id,
+    helpers: {
+      star(num, rating) {
+        return Math.round(rating) < num ? "" : "star";
+      }
+    },
+    ...page_data
+  });
+});
 
 router.get("/home", async (req, res) => {
   if (!req.session.doctor) {
@@ -33,15 +64,15 @@ router.get("/home", async (req, res) => {
 });
 
 router.get('/data/:doc_id?', async (req, res) => {
-    if (!req.params.doc_id && !req.session.doctor) {
-        res.redirect('/doctor/login');
-    } else {
-        const id = req.params.doc_id || req.session.doctor.id;
-        const data = await getDoctor(id);
-        res.json({
-            schedules: data.schedules
-        });
-    }
+  if (!req.params.doc_id && !req.session.doctor) {
+    res.redirect('/doctor/login');
+  } else {
+    const id = req.params.doc_id || req.session.doctor.id;
+    const data = await getDoctor(id);
+    res.json({
+      schedules: data.schedules
+    });
+  }
 });
 
 router.post("/data", async (req, res) => {
@@ -138,18 +169,23 @@ router.post("/signup", async (req, res) => {
   let geoloc;
 
   async function getloc(fadd) {
-    var { data } = await axios.get(
+    var {
+      data
+    } = await axios.get(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${fadd}&key=AIzaSyBFYx4flUaipnwrahPBPcFqVLqkKyLwVnE`
     );
-    if(data.results[0]){
-    data = data.results[0].geometry.location;
-    return data;
-  } else{
-    data = { lat: 0, lng: 0}
-    addressError = "Please enter address again, GPS coordinates not found"
-  }
+    if (data.results[0]) {
+      data = data.results[0].geometry.location;
+      return data;
+    } else {
+      data = {
+        lat: 0,
+        lng: 0
+      }
+      addressError = "Please enter address again, GPS coordinates not found"
+    }
 
-  return data
+    return data
   }
 
   geoloc = await getloc(fullAddress);
@@ -178,7 +214,9 @@ router.post("/signup", async (req, res) => {
       addressError
     )
       throw "Validation error in doc signup!!";
-    const { docInserted } = await createDoc(
+    const {
+      docInserted
+    } = await createDoc(
       firstname,
       lastname,
       email,
@@ -224,15 +262,25 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-// router.get('/private', async (req, res) => {
-//     try {
-//         res.render('user/private', {
-//             title: "Private",
-//             username: req.session.user
-//         })
-//     } catch (error) {
-//         res.status(400);
-//     }
-// });
+
+
+router.post('/appointment', async (req, res) => {
+  const bookingDetails = req.body.bookingDetails;
+  const {
+    doc_id,
+    insurance,
+    reason,
+    new_patient,
+    timeSlot
+  } = bookingDetails;
+  if(!doc_id || !insurance || !reason || !new_patient || !timeSlot){
+    res.redirect('/');
+  } else {
+    req.session.apptmnt = bookingDetails;
+    res.redirect('/booking');
+    
+  }
+});
+
 
 module.exports = router;
