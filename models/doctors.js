@@ -12,6 +12,7 @@ const {
   isPasswordInvalid,
   isSpecialtyInvalid,
 } = require("../helpers/auth_helper");
+const { createSchedules, generateInsurance } = require("../helpers/doc_helper");
 
 const getDoctor = async (id) => {
   const _id = ObjectId(id);
@@ -85,6 +86,11 @@ const createDoc = async (
       specialtyError
     )
       throw "Validation error in createDoc!!";
+    const schedules = createSchedules();
+    const insurance = generateInsurance();
+    const gender = 'male';
+    const qualification = 'MD';
+    const rating = 0;
     const saltRounds = 16;
     password = await bcrypt.hash(password, saltRounds);
     const docs = await getDocs();
@@ -97,7 +103,7 @@ const createDoc = async (
       email,
       password,
       specialty,
-      schedules: [],
+      schedules,
       address,
       apartment,
       city,
@@ -106,6 +112,10 @@ const createDoc = async (
       country,
       coords,
       location,
+      insurance,
+      gender,
+      qualification,
+      rating
     });
     return {
       docInserted: acknowledged && insertedId,

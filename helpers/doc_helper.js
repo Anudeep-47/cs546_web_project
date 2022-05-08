@@ -30,14 +30,53 @@ const prepDocPageData = (doc) => {
         state: doc.state,
         zip: doc.zip,
         rating: doc.rating,
-        recent_review: doc.reviews[doc.reviews.length-1] ? doc.reviews[doc.reviews.length-1].review : undefined,
-        recent_review_time: doc.reviews[doc.reviews.length-1] ? doc.reviews[doc.reviews.length-1].review_time : undefined,
+        recent_review: doc.reviews[doc.reviews.length - 1] ? doc.reviews[doc.reviews.length - 1].review : undefined,
+        recent_review_time: doc.reviews[doc.reviews.length - 1] ? doc.reviews[doc.reviews.length - 1].review_time : undefined,
     };
     return page_data;
 };
 
 
+const createSchedules = () => {
+    let count = 14;
+    let curDate = moment();
+    let schedules = [];
+    while (count--) {
+        const daySchedule = {
+            day: curDate.format('DD'),
+            month: curDate.format('MM'),
+            year: curDate.format('Y'),
+            dayOfWeek: curDate.format('ddd'),
+            monthName: curDate.format('MMM'),
+            available: true,
+            startDay: '09:00',
+            endDay: '18:00',
+            sessionTime: 30,
+            breakTimes: [],
+            workTimes: []
+        }
+        schedules.push(daySchedule);
+        curDate.add(1, 'days');
+    }
+    return schedules;
+};
+
+const generateInsurance = () => {
+    let insurance_array = [
+        "Aetna",
+        "Cigna",
+        "United Healthcare",
+        "Humana",
+        "Kaiser Foundation",
+        "Centene Corporation",
+    ];
+    const randomInsurance = Math.floor(Math.random() * insurance_array.length);
+    return insurance_array[randomInsurance];
+};
+
 module.exports = {
     prepHomeDocs,
-    prepDocPageData
+    prepDocPageData,
+    createSchedules,
+    generateInsurance
 };

@@ -28,30 +28,7 @@ const {
   prepDocPageData
 } = require("../helpers/doc_helper");
 
-router.get("/:id", async (req, res) => {
-  let id = req.params.id;
-  if (!id || id.trim().length === 0) {
-    res.render('/');
-  }
-  id = id.trim();
-  const doc_data = await getDoctor(id);
-  const doc_reviews = await getDocReviews(id);
-  doc_data.reviews = doc_reviews;
-  const page_data = prepDocPageData(doc_data);
-  let location_coords = doc_data.coords
-  res.render('pages/doctor', {
-    title: "Doctor",
-    script_file: "doc_public",
-    location_c : encodeURIComponent(JSON.stringify(location_coords)),
-    id,
-    helpers: {
-      star(num, rating) {
-        return Math.round(rating) < num ? "" : "star";
-      }
-    },
-    ...page_data
-  });
-});
+
 
 router.get("/home", async (req, res) => {
   if (!req.session.doctor) {
@@ -283,6 +260,32 @@ router.post('/appointment', async (req, res) => {
       url: '/user/booking'
     });
   }
+});
+
+
+router.get("/:id", async (req, res) => {
+  let id = req.params.id;
+  if (!id || id.trim().length === 0) {
+    res.render('/');
+  }
+  id = id.trim();
+  const doc_data = await getDoctor(id);
+  const doc_reviews = await getDocReviews(id);
+  doc_data.reviews = doc_reviews;
+  const page_data = prepDocPageData(doc_data);
+  let location_coords = doc_data.coords
+  res.render('pages/doctor', {
+    title: "Doctor",
+    script_file: "doc_public",
+    location_c : encodeURIComponent(JSON.stringify(location_coords)),
+    id,
+    helpers: {
+      star(num, rating) {
+        return Math.round(rating) < num ? "" : "star";
+      }
+    },
+    ...page_data
+  });
 });
 
 
