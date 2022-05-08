@@ -11,7 +11,8 @@ const {
 } = require('../helpers/auth_helper');
 
 const {
-    splitAppointments
+    splitAppointments,
+    sendEmail
 } = require('../helpers/apptmnt_helper');
 
 const {
@@ -25,6 +26,10 @@ const {
     logout,
     authorizeUser
 } = require('../controllers/auth');
+
+const {
+    addApptmntToDocSchedule
+} = require('../controllers/doctors');
 
 const {
     getUserAppointments,
@@ -165,6 +170,11 @@ router.post('/booking', async (req, res) => {
             time: new Date(timeSlot)
         }
         const apptmnt = await createAppointment(apptmntDetails);
+        await addApptmntToDocSchedule(apptmnt);
+        const user = await getUser(user_id);
+        apptmnt.user_email = user.email;
+        await sendEmail(apptmnt, "Booked");
+        delete req.session.apptmnt;
         res.json({
             apptmnt
         });

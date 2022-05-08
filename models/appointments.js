@@ -84,7 +84,7 @@ const getAppointment = async (id) => {
 const deleteAppointment = async (id) => {
     const _id = ObjectId(id);
     const apptmnts = await getAppointments();
-    const apptmnt = await getAppointment();
+    const apptmnt = await getAppointment(id);
     const res = await apptmnts.deleteOne({
         _id
     });
