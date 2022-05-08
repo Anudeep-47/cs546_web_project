@@ -1,5 +1,5 @@
 var pager = {};
-pager.items = JSON.parse(decodedJson);
+pager.items = stores;
 pager.itemsPerPage = 6;
 pagerInit(pager);
 
@@ -32,7 +32,7 @@ function bindList() {
       } </div>
       <div class="col-xs-4 col-sm-2 right">  <img src="/public/img/${
         pgItems[i]._id
-      }.png" class="rounded" alt="Profile Picture" style="min-height: fit-content ;height: 100px"></div>
+      }.png" class="rounded" alt="Profile Picture" style="height: 100px"></div>
     </div>`
     );
 
@@ -81,6 +81,8 @@ function pagerInit(p) {
         {$('#prev').addClass('disabled');}
         {$('#next').removeClass('disabled');}
       }
+      if (p.currentPage !== p.pagedItems.length - 1)
+      {$('#next').removeClass('disabled');}
     }
   };
   p.nextPage = function () {
@@ -102,6 +104,8 @@ function pagerInit(p) {
   };
   initt();
 }
+
+
 $(function () {
   bindList();
 });

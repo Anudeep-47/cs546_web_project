@@ -1,5 +1,5 @@
-<div id="row search_bar">
-    <form action="/" method="post">
+<div id="search_bar">
+    <form action="/search" method="post">
         <div class="row">
             <div class="col">
 
@@ -32,10 +32,14 @@
             <div class="col">
                 <input aria-label="Enter a location" placeholder="Enter a location" class="form-select" id="locationS"
                     name="locationS" type="text">
-                </input>
+                    {{#if locError}}
+                    <span id="name-error" class="text-danger">{{locError}}</span>
+                    {{else}}
+                    <span id="name-error" class="text-danger"></span>
+                    {{/if}}
             </div>
             <div class="col-1">
-                <button type="submit" class="btn btn-primary" href="search.hbs">Search</button>
+                <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </div>
     </form>
