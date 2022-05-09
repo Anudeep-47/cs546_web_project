@@ -1,5 +1,10 @@
 body {
   padding-top: 100px;
+  background-color: #B0E0E6;
+}
+
+#nav {
+  background-color: #B0E0E6;
 }
 
 .nowrap {
