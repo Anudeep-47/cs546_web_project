@@ -16,6 +16,7 @@ router.get("/", async (req, res) => {
 
 
   res.render("pages/home", {
+    script_file: "home",
     title: "Home",
     docs1: docs01,
     docs2: docs02,

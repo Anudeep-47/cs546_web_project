@@ -21,10 +21,7 @@ router.post('/', async (req, res) => {
             res.json(`Successfully added or updated the review for apptmnt id: ${reviewData.apptmnt_id}`);
         }
     } catch (error) {
-        res.status(error.error_code).render(`pages/error${error.error_code}.hbs`, {
-            title: `Error ${error.error_code}`,
-            error: error.message
-        });
+        console.log(error);
     }
 });
 

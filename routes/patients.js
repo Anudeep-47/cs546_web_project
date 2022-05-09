@@ -29,10 +29,7 @@ router.get('/apptmnts/:id', async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(error.error_code).render(`pages/error${error.error_code}.hbs`, {
-      title: `Error ${error.error_code}`,
-      error: error.message
-    });
+    console.log(error);
   }
 });
 
@@ -55,10 +52,7 @@ router.get('/:id', async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(error.error_code).render(`pages/error${error.error_code}.hbs`, {
-      title: `Error ${error.error_code}`,
-      error: error.message
-    });
+    console.log(error);
   }
 });
 
