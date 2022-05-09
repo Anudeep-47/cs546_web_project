@@ -317,3 +317,7 @@ $('#bookApptmnt').on('click', function (e) {
         $('#bookingModal').modal('toggle');
     });
 });
+
+$("img").on("error", function () {
+    $(this).attr("src", "/public/img/doctor_male.jpeg");
+});

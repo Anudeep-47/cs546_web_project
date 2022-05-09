@@ -363,3 +363,7 @@ $('#saveSchedules').on('click', function (e) {
 $('#patDetailsBtn').on('click', function () {
     window.location.href = `/patient/${mainApptmnt._id}`;
 });
+
+$("img").on("error", function () {
+    $(this).attr("src", "/public/img/doctor_male.jpeg");
+});
