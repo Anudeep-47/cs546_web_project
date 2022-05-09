@@ -262,3 +262,8 @@ $('#book_form').submit(function (e) {
     });
 
 });
+
+
+$("img").on("error", function () {
+    $(this).attr("src", "/public/img/doctor_male.jpeg");
+});
