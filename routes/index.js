@@ -37,6 +37,7 @@ const constructor = (app) => {
     app.use('/', homeRoutes);
 
     app.use('*', (req, res) => {
+        console.log('404 bad url');
         res.status(404).render("pages/error404", {
             title: "Error",
             error: "No Page Found"

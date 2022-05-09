@@ -4,7 +4,7 @@
             <div class="col">
 
 
-                <select class="form-select" id="specialty" name="specialty">
+                <select class="form-select form-select-lg rounded-0" id="specialty" name="specialty">
                     <option selected>Specialty</option>
                     <option>Acupuncturist</option>
                     <option>Addiction Specialist</option>
@@ -25,7 +25,7 @@
 
             </div>
             <div class="col">
-                <select class="form-select" id="insurance" name="insurance">
+                <select class="form-select form-select-lg rounded-0" id="insurance" name="insurance">
                     <option selected>Choose your Insurance</option>
                     <option value="self">Self Payment</option>
                     <option>Aetna</option>
@@ -45,7 +45,7 @@
                 {{/if}}
             </div>
             <div class="col">
-                <input aria-label="Enter a location" placeholder="Enter a location" class="form-select" id="locationS"
+                <input aria-label="Enter a location" placeholder="Enter a location" class="form-select form-select-lg rounded-0" id="locationS"
                     name="locationS" type="text">
                 {{#if locError}}
                 <span class="text-danger">{{locError}}</span>
@@ -54,7 +54,7 @@
                 {{/if}}
             </div>
             <div class="col-1">
-                <button type="submit" class="btn btn-primary">Search</button>
+                <button type="submit" class="btn btn-primary btn-lg rounded-0">Search</button>
             </div>
         </div>
     </form>

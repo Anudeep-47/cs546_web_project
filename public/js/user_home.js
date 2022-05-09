@@ -187,7 +187,7 @@ const createAppointmentElements = (parent, apptmnts) => {
         const div3_1 = $("<div>").addClass("col-3");
         const div3_2 = $("<div>").addClass("col");
         const img_url = `/public/img/${apptmnt.doctor_id}.png`;
-        const img = $("<img>").addClass("img-thumbnail border-secondary").attr("src", img_url);
+        const img = $("<img>").addClass("img-thumbnail border-secondary").attr("src", img_url).attr('alt', "doctor");
         const p1 = $("<p>").text(apptmnt.doctor_name);
         const p2 = $("<p>").addClass("small text-muted").text(apptmnt.doctor_specialty);
         const p3 = $("<p>").addClass("small mt-2").text(apptmnt.time_string);
