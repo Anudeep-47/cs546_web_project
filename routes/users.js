@@ -53,6 +53,7 @@ router.get('/home', async (req, res) => {
         } = splitAppointments(apptmnts);
         res.render('pages/user_home', {
             script_file: "user_home",
+            mapsApi:true,
             title: "Patient Home",
             newApptmnts,
             pastApptmnts

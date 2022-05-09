@@ -285,6 +285,7 @@ router.get("/:id", async (req, res) => {
   res.render('pages/doctor', {
     title: "Doctor",
     script_file: "doc_public",
+    mapsApi: true,
     location_c : encodeURIComponent(JSON.stringify(location_coords)),
     id,
     helpers: {

@@ -33,6 +33,7 @@ router.get("/", async (req, res) => {
         incorrectInsurance:
           "Incorrect Insurance, Please choose a specialty from Options",
         hasErrors: true,
+        mapsApi: true,
         title: "Error 400",
       });
       return;
@@ -42,6 +43,7 @@ router.get("/", async (req, res) => {
         incorrectSpecialty:
           "Incorrect Specialty, Please choose a specialty from Options",
         hasErrors: true,
+        mapsApi: true,
         title: "Error 400",
       });
       return;
@@ -51,6 +53,7 @@ router.get("/", async (req, res) => {
         incorrectInsurance:
           "Incorrect Insurance, Please choose a specialty from Options",
         hasErrors: true,
+        mapsApi: true,
         title: "Error 400",
       });
       return;
@@ -92,6 +95,7 @@ router.get("/", async (req, res) => {
       if (searchdocs.length == 0) {
         res.render("pages/search", {
           title: "Search",
+          mapsApi: true,
           searchError:
             "No Doctors found. Please enter different Speciality or Insurance and try again",
           locError: locationError,
@@ -100,6 +104,7 @@ router.get("/", async (req, res) => {
         res.render("pages/search", {
           title: "Search",
           searchScript: true,
+          mapsApi: true,
           docs: searchdocs,
           docsEncoded: encodeURIComponent(JSON.stringify(searchdocs)),
           helpers: {
@@ -162,6 +167,7 @@ router.post("/", async (req, res) => {
       incorrectInsurance:
         "Incorrect Insurance, Please choose a specialty from Options",
       hasErrors: true,
+      mapsApi: true,
       title: "Error 400",
     });
     return;
@@ -171,6 +177,7 @@ router.post("/", async (req, res) => {
       incorrectSpecialty:
         "Incorrect Specialty, Please choose a specialty from Options",
       hasErrors: true,
+      mapsApi: true,
       title: "Error 400",
     });
     return;
@@ -180,6 +187,7 @@ router.post("/", async (req, res) => {
       incorrectInsurance:
         "Incorrect Insurance, Please choose a specialty from Options",
       hasErrors: true,
+      mapsApi: true,
       title: "Error 400",
     });
     return;

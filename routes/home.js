@@ -23,7 +23,8 @@ router.get("/", async (req, res) => {
     docs4: docs04,
     docs5: docs05,
     docs6: docs06,
-    homepagecss: true
+    homepagecss: true,
+    mapsApi:true
   });
 });
 

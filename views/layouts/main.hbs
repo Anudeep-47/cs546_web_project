@@ -103,7 +103,9 @@
   <script src="/public/js/searchScript.js"></script>
 
   {{/if}}
+  {{#if mapsApi}}
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFYx4flUaipnwrahPBPcFqVLqkKyLwVnE&libraries=places&callback=initAutocomplete"></script>
+    {{/if}}
 </body>
 
 </html>
