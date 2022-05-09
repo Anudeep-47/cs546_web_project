@@ -12,8 +12,7 @@
                 <div id="schdl_section1" class="card-body">
                   <div class="row">
                     <div class="col">
-                      <label id="labelDay1" class="form-label small">Day
-                        1</label>
+                      <label id="labelDay1" class="form-label small">Day 1</label>
                     </div>
                     <div class="col form-check form-switch">
                       <input
@@ -56,8 +55,7 @@
                   </div>
                   <div class="row">
                     <div class="col">
-                      <label id="labelDay2" class="form-label small">Day
-                        2</label>
+                      <label id="labelDay2" class="form-label small">Day 2</label>
                     </div>
                     <div class="col form-check form-switch">
                       <input
@@ -100,8 +98,7 @@
                   </div>
                   <div class="row">
                     <div class="col">
-                      <label id="labelDay3" class="form-label small">Day
-                        3</label>
+                      <label id="labelDay3" class="form-label small">Day 3</label>
                     </div>
                     <div class="col form-check form-switch">
                       <input
@@ -144,8 +141,7 @@
                   </div>
                   <div class="row">
                     <div class="col">
-                      <label id="labelDay4" class="form-label small">Day
-                        4</label>
+                      <label id="labelDay4" class="form-label small">Day 4</label>
                     </div>
                     <div class="col form-check form-switch">
                       <input
@@ -188,8 +184,7 @@
                   </div>
                   <div class="row">
                     <div class="col">
-                      <label id="labelDay5" class="form-label small">Day
-                        5</label>
+                      <label id="labelDay5" class="form-label small">Day 5</label>
                     </div>
                     <div class="col form-check form-switch">
                       <input
@@ -232,8 +227,7 @@
                   </div>
                   <div class="row">
                     <div class="col">
-                      <label id="labelDay6" class="form-label small">Day
-                        6</label>
+                      <label id="labelDay6" class="form-label small">Day 6</label>
                     </div>
                     <div class="col form-check form-switch">
                       <input
@@ -276,8 +270,7 @@
                   </div>
                   <div class="row">
                     <div class="col">
-                      <label id="labelDay7" class="form-label small">Day
-                        7</label>
+                      <label id="labelDay7" class="form-label small">Day 7</label>
                     </div>
                     <div class="col form-check form-switch">
                       <input
@@ -507,52 +500,54 @@
         <h3 id="no_apptmnt_h3">
           No Appointments yet... :(
         </h3>
-        <div class="row">
-          <div class="col">
-            <p>
-              <label class="fw-light">Patient Name:</label>
-              <label id="pat_name" class="fs-5 m-2">Anudeep Pala</label>
-            </p>
-            <p>
-              <label class="fw-light">Reason:</label>
-              <label id="pat_reason" class="m-2">Severe Fever</label>
-            </p>
-            <p>
-              <label class="fw-light">Time:</label>
-              <label id="appt_time" class="fs-5 m-2">April 30, 19:00</label>
-            </p>
-            <p>
-              <label class="fw-light">Notes:</label>
-              <label id="appt_notes" class="m-2">I have been fully vaccinated</label>
-            </p>
+        <div id="apptmnt_view">
+          <div class="row">
+            <div class="col">
+              <p>
+                <label class="fw-light">Patient Name:</label>
+                <label id="pat_name" class="fs-5 m-2">Anudeep Pala</label>
+              </p>
+              <p>
+                <label class="fw-light">Reason:</label>
+                <label id="pat_reason" class="m-2">Severe Fever</label>
+              </p>
+              <p>
+                <label class="fw-light">Time:</label>
+                <label id="appt_time" class="fs-5 m-2">April 30, 19:00</label>
+              </p>
+              <p>
+                <label class="fw-light">Notes:</label>
+                <label id="appt_notes" class="m-2">I have been fully vaccinated</label>
+              </p>
+            </div>
+            <div class="col">
+              <p>
+                <label class="fw-light">Gender:</label>
+                <label id="pat_gen" class="fs-5 m-2">Male</label>
+              </p>
+              <p>
+                <label class="fw-light">Age:</label>
+                <label id="pat_age" class="fs-5 m-2">27</label>
+              </p>
+              <p>
+                <label class="fw-light">Duration:</label>
+                <label id="appt_dur" class="fs-5 m-2">30</label>
+              </p>
+              <p>
+                <label class="fw-light">Status:</label>
+                <label class="fs-5 m-2">Confirmed</label>
+              </p>
+            </div>
           </div>
-          <div class="col">
-            <p>
-              <label class="fw-light">Gender:</label>
-              <label id="pat_gen" class="fs-5 m-2">Male</label>
-            </p>
-            <p>
-              <label class="fw-light">Age:</label>
-              <label id="pat_age" class="fs-5 m-2">27</label>
-            </p>
-            <p>
-              <label class="fw-light">Duration:</label>
-              <label id="appt_dur" class="fs-5 m-2">30</label>
-            </p>
-            <p>
-              <label class="fw-light">Status:</label>
-              <label class="fs-5 m-2">Confirmed</label>
-            </p>
+          <div
+            class="position-absolute bottom-0 end-0 d-grid gap-2 d-md-flex justify-content-md-end"
+          >
+            <button
+              id="patDetailsBtn"
+              class="btn btn-primary"
+              type="button"
+            >Details</button>
           </div>
-        </div>
-        <div
-          class="position-absolute bottom-0 end-0 d-grid gap-2 d-md-flex justify-content-md-end"
-        >
-          <button
-            id="patDetailsBtn"
-            class="btn btn-primary"
-            type="button"
-          >Details</button>
         </div>
       </div>
     </div>
