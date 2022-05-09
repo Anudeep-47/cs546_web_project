@@ -7,6 +7,14 @@ const configRoutes = require('./routes');
 
 const app = express();
 
+const http = require('http').Server(app);
+var ExpressPeerServer = require('peer').ExpressPeerServer;
+var options = {
+    debug: true
+}
+const io = require('socket.io')(http);
+app.use('/peerjs', ExpressPeerServer);
+
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
@@ -29,9 +37,19 @@ app.use(session({
     saveUninitialized: true
 }));
 
+io.on("connection" , (socket)=>{
+    socket.on('createNewUsers' , (id , room)=>{
+      socket.join(room);
+      socket.to(room).emit('userJoinsRoom' , id);
+      socket.on('disconnect' , ()=>{
+          socket.to(room).emit('userDisconnects' , id);
+      })
+    })
+  })
+
 
 configRoutes(app);
 
-app.listen(process.env.PORT || 3000, () => {
+http.listen(process.env.PORT || 3000, () => {
     console.log("Server is running on PORT 3000..");
 });

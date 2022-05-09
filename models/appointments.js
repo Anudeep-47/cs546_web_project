@@ -95,6 +95,20 @@ const deleteAppointment = async (id) => {
     };
 };
 
+const getUserIDAppointmentID = async (appointmentId,userId) => {
+    const apptmnts = await getAppointments();
+    let userAppointment = await apptmnts.find({_id: ObjectId(appointmentId), user_id: userId }).toArray();
+    if (!userAppointment) throw `Failed to get appointments for user id: ${userId}`;
+    return userAppointment;
+};
+
+const getDoctorIDAppointmentID = async (appointmentId,doctorId) => {
+    const apptmnts = await getAppointments();
+    let doctorAppointment = await apptmnts.find({_id: ObjectId(appointmentId), doctor_id: doctorId }).toArray();
+    if (!doctorAppointment) throw `Failed to get appointments for user id: ${userId}`;
+    return doctorAppointment;
+};
+
 module.exports = {
     getUserAppointments,
     getDocAppointments,
@@ -102,5 +116,7 @@ module.exports = {
     createAppointment,
     updateAppointment,
     deleteAppointment,
-    getAppointment
+    getAppointment,
+    getUserIDAppointmentID,
+    getDoctorIDAppointmentID,
 };

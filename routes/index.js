@@ -5,6 +5,7 @@ const searchRoutes = require('./search');
 const appointmentRoutes = require('./appointments');
 const reviewRoutes = require('./reviews');
 const patientRoutes = require('./patients');
+const videoRoutes = require('./video');
 
 const {
     getAuthDetails
@@ -35,9 +36,9 @@ const constructor = (app) => {
     app.use('/patient', patientRoutes);
     
     app.use('/', homeRoutes);
+    app.use('/video', videoRoutes);
 
     app.use('*', (req, res) => {
-        console.log('404 bad url');
         res.status(404).render("pages/error404", {
             title: "Error",
             error: "No Page Found"

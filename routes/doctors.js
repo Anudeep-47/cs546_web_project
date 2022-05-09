@@ -128,6 +128,7 @@ router.post("/login", async (req, res) => {
       authorizeDoctor(req, {
         id: doc._id,
         firstname: doc.firstname,
+        usertype: "doctor"
       });
       res.redirect("/doctor/home");
     } else {

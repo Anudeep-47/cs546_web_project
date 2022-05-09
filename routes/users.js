@@ -220,7 +220,8 @@ router.post('/login', async (req, res) => {
         if (user) {
             authorizeUser(req, {
                 id: user._id,
-                firstname: user.firstname
+                firstname: user.firstname,
+                usertype: "patient"
             });
             if (req.session.apptmnt) {
                 res.redirect('/user/booking');
