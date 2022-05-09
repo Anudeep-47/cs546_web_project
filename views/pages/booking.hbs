@@ -12,8 +12,7 @@
                       <img
                         class="img-thumbnail border-secondary rounded-circle"
                         src="/public/img/{{data.doc_id}}.png"
-                        alt=""
-                        srcset=""
+                        alt="Doctor Image"
                       />
                     </div>
                     <div class="col">
@@ -26,10 +25,10 @@
                         {{data.city}},
                         {{data.state}},
                         {{data.zip}}</p>
-                      <li class="list-inline-item mt-3"><i
+                      <ul><li class="list-inline-item mt-3"><i
                           class="fa fa-star star me-2"
                           aria-hidden="true"
-                        ></i>{{data.rating}}</li>
+                        ></i>{{data.rating}}</li></ul>
                     </div>
                   </div>
                 </div>
@@ -231,9 +230,9 @@
               <div class="row my-3">
                 <div class="col text-center">
                   <p>
-                    <label class="fw-light" for="">Current Appointment:</label>
-                    <label id="labelCurApptmnt" class="fs-5 m-2" for="">{{time data.timeSlot}}</label>
-                    <label for=""><a id="edit" href="">edit</a></label>
+                    <label class="fw-light">Current Appointment:</label>
+                    <label id="labelCurApptmnt" class="fs-5 m-2">{{time data.timeSlot}}</label>
+                    <label><a id="edit" href="">edit</a></label>
                   </p>
                 </div>
               </div>
@@ -345,11 +344,10 @@
                     <div class="row">
                       <div class="col">
                         <p>
-                          <label class="fw-light" for="">Selected Appointment:</label>
+                          <label class="fw-light">Selected Appointment:</label>
                           <label
                             id="labelNewApptmnt"
                             class="fs-5 m-2"
-                            for=""
                           >April 30, 20:00</label>
                         </p>
                       </div>

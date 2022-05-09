@@ -1,6 +1,6 @@
 {
   "mongoConfig": {
-    "serverUrl": "mongodb://localhost:27017/",
+    "serverUrl": "mongodb+srv://webproject:D2D7w97JKubRV01S@cluster0.r15st.mongodb.net/",
     "database": "cs_546_web_project"
   }
 }
