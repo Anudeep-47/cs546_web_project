@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const cors = require('cors');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 
@@ -15,6 +16,7 @@ var options = {
 const io = require('socket.io')(http);
 app.use('/peerjs', ExpressPeerServer);
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true

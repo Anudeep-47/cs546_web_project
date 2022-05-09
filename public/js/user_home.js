@@ -188,6 +188,7 @@ const createAppointmentElements = (parent, apptmnts) => {
         const div3_2 = $("<div>").addClass("col");
         const img_url = `/public/img/${apptmnt.doctor_id}.png`;
         const img = $("<img>").addClass("img-thumbnail border-secondary").attr("src", img_url).attr('alt', "doctor");
+        addImageBreakListener(img);
         const p1 = $("<p>").text(apptmnt.doctor_name);
         const p2 = $("<p>").addClass("small text-muted").text(apptmnt.doctor_specialty);
         const p3 = $("<p>").addClass("small mt-2").text(apptmnt.time_string);
@@ -364,9 +365,9 @@ $('#reviewModal').on('hidden.bs.modal', function () {
     delete mainApptmnt.review;
 });
 
-$('#submitReview').on('click', function(e) {
+$('#submitReview').on('click', function (e) {
     e.preventDefault();
-    if(mainApptmnt.rating){
+    if (mainApptmnt.rating) {
         mainApptmnt.review = $('#reviewText').val();
         const {
             _id,
@@ -394,4 +395,19 @@ $('#submitReview').on('click', function(e) {
 
 $("img").on("error", function () {
     $(this).attr("src", "/public/img/doctor_male.jpeg");
+});
+
+// $(document).on('error', 'img', function () {
+//     $(this).attr("src", "/public/img/doctor_male.jpeg");
+// });
+
+const addImageBreakListener = function (img) {
+    $(img).on('error', function () {
+        $(this).attr("src", "/public/img/doctor_male.jpeg");
+    });
+}
+
+$('#video_btn').on('click', function (e) {
+    e.preventDefault();
+    window.location.href = `/video/${mainApptmnt._id}`;
 });

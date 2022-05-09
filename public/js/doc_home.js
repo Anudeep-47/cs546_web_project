@@ -367,3 +367,8 @@ $('#patDetailsBtn').on('click', function () {
 $("img").on("error", function () {
     $(this).attr("src", "/public/img/doctor_male.jpeg");
 });
+
+$('#video_btn').on('click', function(e){
+    e.preventDefault();
+    window.location.href = `/video/${mainApptmnt._id}`;
+});
