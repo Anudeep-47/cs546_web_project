@@ -320,10 +320,6 @@ $('#updateApptmnt').on('click', function (e) {
     }, ({
         updatedApptmnt
     }) => {
-        // console.log(updatedApptmnt);
-        // Object.keys(updatedApptmnt).forEach(key => {
-        //     mainApptmnt[key] = updatedApptmnt[key];
-        // });
         loadAppointments();
         $('#rescheduleModal').modal('toggle');
     });

@@ -190,6 +190,16 @@ $(document).on({
     }
 }, ".slot");
 
+const isNameInvalid = (name) => {
+    if (
+      name === undefined ||
+      name.trim().length === 0 ||
+      !/^[a-z\s]+$/i.test(name.trim())
+    ) {
+      return true;
+    }
+    return false;
+  };
 
 $('#book_form').submit(function (e) {
     e.preventDefault();
@@ -197,15 +207,14 @@ $('#book_form').submit(function (e) {
     let lastname = undefined;
     let age = undefined;
     let phone = undefined;
-    if ($('#firstname').val().trim().length === 0) {
+    if (isNameInvalid($('#firstname').val())) {
         $('#name-error').text('Name cannot be empty!');
         $('#name-error').show();
     } else firstname = $('#firstname').val().trim();
-    if ($('#lastname').val().trim().length === 0) {
+    if (isNameInvalid($('#lastname').val())) {
         $('#name-error').text('Name cannot be empty!');
         $('#name-error').show();
     } else lastname = $('#lastname').val().trim();
-    console.log($('#age').val());
     if ($('#age').val() === undefined) {
         $('#age-error').text('Age cannot be empty!');
         $('#age-error').show();

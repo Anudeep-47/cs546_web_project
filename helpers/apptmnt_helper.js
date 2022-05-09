@@ -1,5 +1,35 @@
 const moment = require('moment');
 const nodemailer = require('nodemailer');
+const {
+    ObjectId
+} = require('mongodb');
+
+
+const validateID = (id) => {
+    try {
+        if (id === undefined) {
+            let e = new Error("The 'id' parameter does not exist !!");
+            e.error_code = 400;
+            throw e;
+        }
+        if (typeof (id) !== 'string' || id.trim().length === 0) {
+            let e = new Error("The 'id' parameter should be a non-empty string(excluding spaces) !!");
+            e.error_code = 400;
+            throw e;
+        }
+        id = id.trim();
+        if (!ObjectId.isValid(id) || ObjectId(id).toString() !== id) {
+            let e = new Error("The 'id' parameter is not a valid ObjectID!!");
+            e.error_code = 400;
+            throw e;
+        }
+        return id;
+    } catch (error) {
+        console.log(`Error ${error.error_code}: ${error.message}`);
+        throw error;
+    }
+};
+
 
 const splitAppointments = (apptmnts) => {
     const newApptmnts = [];
@@ -45,7 +75,7 @@ const sendEmail = async (data, status) => {
     let body = `Dear ${data.patient_name},` +
         `<br>Your Appointment with ${data.doctor_name} has been ${status}.` +
         `<br>Appointment Time: ${moment(data.time).format("MMMM Do, h:mm a")}`;
-        
+
     var transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
@@ -77,5 +107,6 @@ const sendEmail = async (data, status) => {
 module.exports = {
     splitAppointments,
     prepareAppointments,
-    sendEmail
+    sendEmail,
+    validateID
 };
