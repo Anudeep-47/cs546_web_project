@@ -19,7 +19,7 @@ if (JSON.stringify(stores) !== "{}") {
       );
       option.html(
         `<div class="row">${i + 1}
-      <div class="col-xs-4 col-sm-2"><img src="/public/img/${pgItems[i]._id}.png" class="rounded" alt="Profile Picture" style="height: 100px"></div>
+      <div class="col-xs-4 col-sm-2"><img src="/public/img/${pgItems[i]._id}.png" class="rounded" alt="Profile Picture" style="height: 100px" onerror=this.src="/public/img/doctor_male.jpeg"></div>
       <div class="col-xs-12 col-sm-4">
         <p id='DocName' class="visible-xs  style="height: 20px"> ${pgItems[i].firstname} ${pgItems[i].lastname}</p>
         <p id='DocSpecialty' class="visible-xs" style="height: 20px"> ${pgItems[i].specialty}</p>
