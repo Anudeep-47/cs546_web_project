@@ -6,6 +6,7 @@ const {
 
 
 const express = require("express");
+const { ObjectId } = require('../config/mongoConnection');
 const router = express.Router();
 
 
@@ -13,6 +14,13 @@ router.get('/:room' , async (req,res)=>{
     try {
         let loginId
         const appointment = req.params.room
+        if(!ObjectId.isValid(appointment)){
+                res.render("pages/error404", {
+                    title: "Error 404",
+                    error: "Page not Found",
+                  });
+                  return null;
+        }
         let loginStat = req.session.user ?? req.session.doctor
         if (!loginStat) {
             res.render("pages/error403", {
@@ -28,17 +36,21 @@ router.get('/:room' , async (req,res)=>{
                 case "doctor":
                     loginId = req.session.doctor.id
                     const docAppointment = await getDoctorIDAppointmentID(appointment,loginId)
-                    if (docAppointment[0].doctor_id == loginId)
-                    {
-                        authStat = true
+                    if(docAppointment.length > 0){
+                        if (docAppointment[0].doctor_id == loginId)
+                        {
+                            authStat = true
+                        }
                     }
                     break;
                 case "patient":
                     loginId = req.session.user.id
                     const userAppointment = await getUserIDAppointmentID(appointment,loginId)
-                    if (userAppointment[0].user_id == loginId)
+                    if(userAppointment.length > 0){
+                        if (userAppointment[0].user_id == loginId)
                     {
                         authStat = true
+                    }
                     }
                     break;
                 default:
@@ -62,5 +74,8 @@ router.get('/:room' , async (req,res)=>{
 
 
 });
+
+
+
 
 module.exports = router;
