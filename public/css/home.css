@@ -58,64 +58,13 @@
     object-fit: cover;
 }
 
-#img1 {
+.img1, .img2, .img3, .img4, .img5, .img6 {
     height: 130;
     width: 130;
     padding: 0;
     position: absolute;
     top: 5px;
     right: 5px
-
-}
-
-#img2 {
-    height: 130;
-    width: 130;
-    padding: 0;
-    position: absolute;
-    top: 5px;
-    right: 5px
-
-}
-
-#img3 {
-    height: 130;
-    width: 130;
-    padding: 0;
-    position: absolute;
-    top: 5px;
-    right: 5px
-
-}
-
-#img4 {
-    height: 130;
-    width: 130;
-    padding: 0;
-    position: absolute;
-    top: 5px;
-    right: 5px
-
-}
-
-#img5 {
-    height: 130;
-    width: 130;
-    padding: 0;
-    position: absolute;
-    top: 5px;
-    right: 5px
-
-}
-
-#img6 {
-    height: 130;
-    width: 130;
-    padding: 0;
-    position: absolute;
-    top: 5px;
-    right: 5px
-
 }
 
 a {
