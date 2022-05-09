@@ -1,349 +1,387 @@
-      <section id="sec1">
-        <div id="user_home" class="container">
-          <div id="search_section" class="row">
-            <div class="col">
-              {{!-- <div class="card"> --}}
-                <div>
-                  <div>
-                    <h1>Find local doctors</h1>
-                    <h1>Who take your insurance !</h1>
-                  </div>
-                  {{> searchbar}}
-                </div>
-              {{!-- </div> --}}
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <section id="sec2">
-        <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <h2 class="mb-3">Doctors with loyal patients </h2>
-            </div>
-            <div class="col-6 text-right">
-              {{!-- <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                <span class="icon-prev" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                <span class="icon-next" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a> --}}
-                <a class="carousel carousel-dark slide mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
-                    <i class="fa fa-arrow-left"></i>
-                </a>
-                <a class="carousel carousel-dark slide mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
-                    <i class="fa fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="col-12">
-                <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
-
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="row">
-                                {{#each docs1}}
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        {{!-- <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532781914607-2031eca2f00d?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=7c625ea379640da3ef2e24f20df7ce8d"> --}}
-                                        <img class="img-thumbnail border-secondary rounded-circle img1" src="/public/img/{{this._id}}.png" alt="doctor-img">
-                                        <div class="card-body" style="height: 300px; width: 200px; ">
-                                            <h3 class="card-title">{{this.firstname}} {{this.lastname}}</h3>
-                                            <p><strong>{{this.specialty}}</strong></p>
-                                            <p>{{this.city}}, {{this.state}}</p>
-                                            <p>Rating:{{this.rating}}</p>
-                                            <p class="card-text">{{this.reviews}}</p>
-                                            <ul><li class="text-right list-inline-item">
-                                              
-                                                <a class="card-block stretched-link text-decoration-none"
-                                                href="/doctor/{{this._id}}">View Availability</a>
-                                                </li></ul>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                        {{/each}}
-                                    
-
-                            </div>
-                        </div>
-                        
-
-                        
-                        
-                        <div class="carousel-item">
-                            <div class="row">
-                              {{#each docs2}}
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        {{!-- <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4"> --}}
-                                        <img class="img-thumbnail border-secondary rounded-circle img2" src="/public/img/{{this._id}}.png" alt="doctor-img">
-                                        <div  class="card-body" style="height: 300px; width: 200px;">
-                                            <h3 class="card-title">{{this.firstname}} {{this.lastname}}</h3>
-                                            <p><strong>{{this.specialty}}</strong></p>
-                                            <p>{{this.city}}, {{this.state}}</p>
-                                            <p>Rating:{{this.rating}}</p>
-                                            <ul>
-                                            <li class="text-right list-inline-item">
-                                              
-                                                <a class="card-block stretched-link text-decoration-none"
-                                                href="/doctor/{{this._id}}">View Availability</a>
-                                                </li></ul>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                {{/each}}
-                                
-
-                            </div>
-                        </div>
-
-                        <div class="carousel-item">
-                            <div class="row">
-                              {{#each docs3}}
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        {{!-- <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4"> --}}
-                                        <img class="img-thumbnail border-secondary rounded-circle img3" src="/public/img/{{this._id}}.png" alt="doctor-image">
-                                        <div  class="card-body" style="height: 300px; width: 200px;">
-                                            <h3 class="card-title">{{this.firstname}} {{this.lastname}}</h3>
-                                            <p><strong>{{this.specialty}}</strong></p>
-                                            <p>{{this.city}}, {{this.state}}</p>
-                                            <p>Rating: {{this.rating}}</p>
-                                            <ul>
-                                            <li class="text-right list-inline-item">
-                                              
-                                              <a  class="card-block stretched-link text-decoration-none"
-                                                href="/doctor/{{this._id}}">View Availability</a>
-                                                </li></ul>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                {{/each}}
-                                
-
-                            </div>
-                        </div>
-
-                         
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-      </section>
-
-            <section id="sec2b">
-        <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <h2 class="mb-3">Doctors with loyal patients </h2>
-            </div>
-            <div class="col-6 text-right">
-              {{!-- <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                <span class="icon-prev" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                <span class="icon-next" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a> --}}
-                <a class="carousel carousel-dark slide mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
-                    <i class="fa fa-arrow-left"></i>
-                </a>
-                <a class="carousel carousel-dark slide mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
-                    <i class="fa fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="col-12">
-                <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
-
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="row">
-                                {{#each docs4}}
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        {{!-- <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532781914607-2031eca2f00d?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=7c625ea379640da3ef2e24f20df7ce8d"> --}}
-                                        <img class="img-thumbnail border-secondary rounded-circle img4" src="/public/img/{{this._id}}.png" alt="doctor-image">
-                                        <div class="card-body" style="height: 300px; width: 200px;">
-                                            <h3 class="card-title">{{this.firstname}} {{this.lastname}}</h3>
-                                            <p><strong>{{this.specialty}}</strong></p>
-                                            <p>{{this.city}}, {{this.state}}</p>
-                                            <p class="card-text">{{this.reviews}}</p>
-                                            <p>Rating:{{this.rating}}</p>
-                                            <ul>
-                                            <li class="text-right list-inline-item">
-                                              
-                                              <a  class="card-block stretched-link text-decoration-none"
-                                                href="/doctor/{{this._id}}">View Availability</a>
-                                                </li></ul>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                        {{/each}}
-
-                              
-                              
-
-         
-
-                            </div>
-                        </div>
-
-                        
-                        <div class="carousel-item">
-                            <div class="row">
-                              {{#each docs5}}
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        {{!-- <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4"> --}}
-                                        <img class="img-thumbnail border-secondary rounded-circle img5" src="/public/img/{{this._id}}.png" alt="doctor-image">
-                                        <div class="card-body" style="height: 300px; width: 200px;">
-                                            <h3 class="card-title">{{this.firstname}} {{this.lastname}}</h3>
-                                            <p><strong>{{this.specialty}}</strong></p>
-                                            <p>{{this.city}}, {{this.state}}</p>
-                                            <p>Rating:{{this.rating}}</p>
-
-                                            <ul>
-                                            <li class="text-right list-inline-item">
-                                              
-                                              <a  class="card-block stretched-link text-decoration-none"
-                                                href="/doctor/{{this._id}}">View Availability</a>
-                                                </li></ul>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                {{/each}}
-                                
-
-                            </div>
-                        </div>
-
-                         <div class="carousel-item">
-                            <div class="row">
-                              {{#each docs6}}
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        {{!-- <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4"> --}}
-                                        <img class="img-thumbnail border-secondary rounded-circle img6" src="/public/img/{{this._id}}.png" alt="doctor-image">
-                                        <div class="card-body" style="height: 300px; width: 200px;">
-                                            <h3 class="card-title">{{this.firstname}} {{this.lastname}}</h3>
-                                            <p><strong>{{this.specialty}}</strong></p>
-                                            <p>{{this.city}}, {{this.state}}</p>
-                                            <p>Rating:{{this.rating}}</p>
-                                            <ul><li class="text-right list-inline-item">
-                                              
-                                              <a  class="card-block stretched-link text-decoration-none"
-                                                href="/doctor/{{this._id}}">View Availability</a>
-                                                </li></ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{/each}}
-                                
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-      </section>
-
-      <section id="sec3">
-        <div class="container">
-          <h2>Top Searched specialities</h2>
-          <div class="row">
-            
-
-            <div class="col-lg-3">
-              <div class="card">
-                <div class="card-body" style="width:100%">
-                  
-                    <a href="/search/?Specialty=Dentist&Insurance=Choose+your+Insurance&Location=" class="card-block stretched-link text-decoration-none"><img id="card-img-top1" alt="Avatar" class="card-img-top img-fluid" src="/public/img/dentist.png">
-                    <h3 class="card-title">Dentist</h3></a>
-                  {{!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-                  {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3">
-              <div class="card">
-                <div class="card-body" style="width:100%">
-                  
-                    <a href="/search/?Specialty=Dermatologist&Insurance=Choose+your+Insurance&Location=" class="card-block stretched-link text-decoration-none"><img id="card-img-top2" alt="Avatar" class="card-img-top img-fluid" src="/public/img/dermatologist.webp">
-                    <h3 class="card-title">Dermatologist</h3></a>
-                  {{!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-                  {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3">
-              <div class="card">
-                <div class="card-body" style="width:100%">
-                  
-                  
-                  <a href="/search/?Specialty=Primary+Care&Insurance=Choose+your+Insurance&Location=" class="card-block stretched-link text-decoration-none">
-                  <img id="card-img-top3" alt="Avatar" class="card-img-top img-fluid" src="/public/img/primary-care.png">
-                  <h3 class="card-title">Primary Care</h3>
-                  </a>
-                  {{!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-                  {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3">
-              <div class="card">
-                <div class="card-body" style="width:100%">
-                  
-                  <a href="/search/?Specialty=Eye+Doctor&Insurance=Choose+your+Insurance&Location=" class="card-block stretched-link text-decoration-none">
-                  <img id="card-img-top4" alt="Avatar" class="card-img-top img-fluid" src="/public/img/eye.jpeg">
-                  <h4 class="card-title">Eye Doctor</h4>
-                  </a>
-                  
-                  {{!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-                  {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <section id="sec4">
-        <div class="container my-4">
-          <h2>
-            App for private practices
-          </h2>
-          <p><strong>Are you a provider interested in reaching new patients ?</strong></p>
-          <ul>
-            <li>Reach patients in your locality</li>
-            <li>Fill last minute openings</li>
-            <li>Strengthen your online reputation with verified reviews</li>
-          </ul>
+<section id="sec1">
+  <div id="user_home" class="container">
+    <div id="search_section" class="row">
+      <div class="col">
+        {{!-- <div class="card"> --}}
           <div>
-            <a href="/doctor/signup" class="btn btn-primary">
-            List your practise
-            </a>
+            <div>
+              <h1>Find local doctors</h1>
+              <h1>Who take your insurance !</h1>
+            </div>
+            {{> searchbar}}
+          </div>
+          {{!--
+        </div> --}}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="sec2">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <h2 class="mb-3">Doctors with loyal patients </h2>
+      </div>
+      <div class="col-6 text-right">
+        {{!-- <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+          <span class="icon-prev" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+          <span class="icon-next" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a> --}}
+        <a class="carousel carousel-dark slide mb-3 mr-1" href="#carouselExampleIndicators2" role="button"
+          data-slide="prev">
+          <i class="fa fa-arrow-left"></i>
+        </a>
+        <a class="carousel carousel-dark slide mb-3 " href="#carouselExampleIndicators2" role="button"
+          data-slide="next">
+          <i class="fa fa-arrow-right"></i>
+        </a>
+      </div>
+      <div class="col-12">
+        <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row">
+                {{#each docs1}}
+                <div class="col-md-4 mb-3">
+                  <div class="card">
+                    {{!-- <img class="img-fluid" alt="100%x280"
+                      src="https://images.unsplash.com/photo-1532781914607-2031eca2f00d?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=7c625ea379640da3ef2e24f20df7ce8d">
+                    --}}
+                    <img class="img-thumbnail border-secondary rounded-circle img1" src="/public/img/{{this._id}}.png"
+                      alt="doctor-img">
+                    <div class="card-body" style="height: 300px; width: 200px; ">
+                      <h3 class="card-title">{{this.firstname}} {{this.lastname}}</h3>
+                      <p><strong>{{this.specialty}}</strong></p>
+                      <p>{{this.city}}, {{this.state}}</p>
+                      <p>Rating:{{this.rating}}</p>
+                      <p class="card-text">{{this.reviews}}</p>
+                      <ul>
+                        <li class="text-right list-inline-item">
+
+                          <a class="card-block stretched-link text-decoration-none" href="/doctor/{{this._id}}">View
+                            Availability</a>
+                        </li>
+                      </ul>
+
+                    </div>
+
+                  </div>
+                </div>
+                {{/each}}
+
+
+              </div>
+            </div>
+
+
+
+
+            <div class="carousel-item">
+              <div class="row">
+                {{#each docs2}}
+                <div class="col-md-4 mb-3">
+                  <div class="card">
+                    {{!-- <img class="img-fluid" alt="100%x280"
+                      src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4">
+                    --}}
+                    <img class="img-thumbnail border-secondary rounded-circle img2" src="/public/img/{{this._id}}.png"
+                      alt="doctor-img">
+                    <div class="card-body" style="height: 300px; width: 200px;">
+                      <h3 class="card-title">{{this.firstname}} {{this.lastname}}</h3>
+                      <p><strong>{{this.specialty}}</strong></p>
+                      <p>{{this.city}}, {{this.state}}</p>
+                      <p>Rating:{{this.rating}}</p>
+                      <ul>
+                        <li class="text-right list-inline-item">
+
+                          <a class="card-block stretched-link text-decoration-none" href="/doctor/{{this._id}}">View
+                            Availability</a>
+                        </li>
+                      </ul>
+
+                    </div>
+
+                  </div>
+                </div>
+                {{/each}}
+
+
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row">
+                {{#each docs3}}
+                <div class="col-md-4 mb-3">
+                  <div class="card">
+                    {{!-- <img class="img-fluid" alt="100%x280"
+                      src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4">
+                    --}}
+                    <img class="img-thumbnail border-secondary rounded-circle img3" src="/public/img/{{this._id}}.png"
+                      alt="doctor-image">
+                    <div class="card-body" style="height: 300px; width: 200px;">
+                      <h3 class="card-title">{{this.firstname}} {{this.lastname}}</h3>
+                      <p><strong>{{this.specialty}}</strong></p>
+                      <p>{{this.city}}, {{this.state}}</p>
+                      <p>Rating: {{this.rating}}</p>
+                      <ul>
+                        <li class="text-right list-inline-item">
+
+                          <a class="card-block stretched-link text-decoration-none" href="/doctor/{{this._id}}">View
+                            Availability</a>
+                        </li>
+                      </ul>
+
+                    </div>
+
+                  </div>
+                </div>
+                {{/each}}
+
+
+              </div>
+            </div>
+
+
           </div>
         </div>
-      </section>
-  
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sec2b">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <h2 class="mb-3">Doctors with loyal patients </h2>
+      </div>
+      <div class="col-6 text-right">
+        {{!-- <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+          <span class="icon-prev" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+          <span class="icon-next" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a> --}}
+        <a class="carousel carousel-dark slide mb-3 mr-1" href="#carouselExampleIndicators2" role="button"
+          data-slide="prev">
+          <i class="fa fa-arrow-left"></i>
+        </a>
+        <a class="carousel carousel-dark slide mb-3 " href="#carouselExampleIndicators2" role="button"
+          data-slide="next">
+          <i class="fa fa-arrow-right"></i>
+        </a>
+      </div>
+      <div class="col-12">
+        <div id="carouselExampleIndicators2b" class="carousel slide" data-ride="carousel">
+
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row">
+                {{#each docs4}}
+                <div class="col-md-4 mb-3">
+                  <div class="card">
+                    {{!-- <img class="img-fluid" alt="100%x280"
+                      src="https://images.unsplash.com/photo-1532781914607-2031eca2f00d?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=7c625ea379640da3ef2e24f20df7ce8d">
+                    --}}
+                    <img class="img-thumbnail border-secondary rounded-circle img4" src="/public/img/{{this._id}}.png"
+                      alt="doctor-image">
+                    <div class="card-body" style="height: 300px; width: 200px;">
+                      <h3 class="card-title">{{this.firstname}} {{this.lastname}}</h3>
+                      <p><strong>{{this.specialty}}</strong></p>
+                      <p>{{this.city}}, {{this.state}}</p>
+                      <p class="card-text">{{this.reviews}}</p>
+                      <p>Rating:{{this.rating}}</p>
+                      <ul>
+                        <li class="text-right list-inline-item">
+
+                          <a class="card-block stretched-link text-decoration-none" href="/doctor/{{this._id}}">View
+                            Availability</a>
+                        </li>
+                      </ul>
+
+                    </div>
+
+                  </div>
+                </div>
+                {{/each}}
+
+
+
+
+
+
+              </div>
+            </div>
+
+
+            <div class="carousel-item">
+              <div class="row">
+                {{#each docs5}}
+                <div class="col-md-4 mb-3">
+                  <div class="card">
+                    {{!-- <img class="img-fluid" alt="100%x280"
+                      src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4">
+                    --}}
+                    <img class="img-thumbnail border-secondary rounded-circle img5" src="/public/img/{{this._id}}.png"
+                      alt="doctor-image">
+                    <div class="card-body" style="height: 300px; width: 200px;">
+                      <h3 class="card-title">{{this.firstname}} {{this.lastname}}</h3>
+                      <p><strong>{{this.specialty}}</strong></p>
+                      <p>{{this.city}}, {{this.state}}</p>
+                      <p>Rating:{{this.rating}}</p>
+
+                      <ul>
+                        <li class="text-right list-inline-item">
+
+                          <a class="card-block stretched-link text-decoration-none" href="/doctor/{{this._id}}">View
+                            Availability</a>
+                        </li>
+                      </ul>
+
+                    </div>
+
+                  </div>
+                </div>
+                {{/each}}
+
+
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row">
+                {{#each docs6}}
+                <div class="col-md-4 mb-3">
+                  <div class="card">
+                    {{!-- <img class="img-fluid" alt="100%x280"
+                      src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4">
+                    --}}
+                    <img class="img-thumbnail border-secondary rounded-circle img6" src="/public/img/{{this._id}}.png"
+                      alt="doctor-image">
+                    <div class="card-body" style="height: 300px; width: 200px;">
+                      <h3 class="card-title">{{this.firstname}} {{this.lastname}}</h3>
+                      <p><strong>{{this.specialty}}</strong></p>
+                      <p>{{this.city}}, {{this.state}}</p>
+                      <p>Rating:{{this.rating}}</p>
+                      <ul>
+                        <li class="text-right list-inline-item">
+
+                          <a class="card-block stretched-link text-decoration-none" href="/doctor/{{this._id}}">View
+                            Availability</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                {{/each}}
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sec3">
+  <div class="container">
+    <h2>Top Searched specialities</h2>
+    <div class="row">
+
+
+      <div class="col-lg-3">
+        <div class="card">
+          <div class="card-body" style="width:100%">
+
+            <a href="/search/?Specialty=Dentist&Insurance=Choose+your+Insurance&Location="
+              class="card-block stretched-link text-decoration-none"><img id="card-img-top1" alt="Avatar"
+                class="card-img-top img-fluid" src="/public/img/dentist.png">
+              <h3 class="card-title">Dentist</h3>
+            </a>
+            {{!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+            {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="card">
+          <div class="card-body" style="width:100%">
+
+            <a href="/search/?Specialty=Dermatologist&Insurance=Choose+your+Insurance&Location="
+              class="card-block stretched-link text-decoration-none"><img id="card-img-top2" alt="Avatar"
+                class="card-img-top img-fluid" src="/public/img/dermatologist.webp">
+              <h3 class="card-title">Dermatologist</h3>
+            </a>
+            {{!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+            {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="card">
+          <div class="card-body" style="width:100%">
+
+
+            <a href="/search/?Specialty=Primary+Care&Insurance=Choose+your+Insurance&Location="
+              class="card-block stretched-link text-decoration-none">
+              <img id="card-img-top3" alt="Avatar" class="card-img-top img-fluid" src="/public/img/primary-care.png">
+              <h3 class="card-title">Primary Care</h3>
+            </a>
+            {{!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+            {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="card">
+          <div class="card-body" style="width:100%">
+
+            <a href="/search/?Specialty=Eye+Doctor&Insurance=Choose+your+Insurance&Location="
+              class="card-block stretched-link text-decoration-none">
+              <img id="card-img-top4" alt="Avatar" class="card-img-top img-fluid" src="/public/img/eye.jpeg">
+              <h4 class="card-title">Eye Doctor</h4>
+            </a>
+
+            {{!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+            {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="sec4">
+  <div class="container my-4">
+    <h2>
+      App for private practices
+    </h2>
+    <p><strong>Are you a provider interested in reaching new patients ?</strong></p>
+    <ul>
+      <li>Reach patients in your locality</li>
+      <li>Fill last minute openings</li>
+      <li>Strengthen your online reputation with verified reviews</li>
+    </ul>
+    <div>
+      <a href="/doctor/signup" class="btn btn-primary">
+        List your practise
+      </a>
+    </div>
+  </div>
+</section>
