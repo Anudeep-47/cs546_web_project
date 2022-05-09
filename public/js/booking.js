@@ -267,3 +267,5 @@ $('#book_form').submit(function (e) {
 $("img").on("error", function () {
     $(this).attr("src", "/public/img/doctor_male.jpeg");
 });
+
+$('img').attr("src", `/public/img/${doc_id}.png`);
