@@ -39,18 +39,18 @@
             {{/if}}
             {{#if specialty}}
             <div class="mb-4">
-              <label class="form-label" for="address">Address</label>
-              <input class="form-select" id="location-input" name="address"></input>
+              <label class="form-label" for="address">Address (Please type and select a address from Drop-Down)</label>
+              <input class="form-select" id="location-input" name="address" aria-label="Address"></input>
               {{#if error.addressError}}
               <span id="address-error" class="text-danger">{{error.addressError}}</span>
               {{else}}
               <span id="address-error" class="text-danger"></span>
               {{/if}}
               <label class="form-label" for="address2">Apt, Suite, etc</label>
-              <input class="form-control" type="text" placeholder="Apt, Suite, etc (optional)" name="address2" />
+              <input class="form-control" type="text" placeholder="Apt, Suite, etc (optional)" name="address2" aria-label="Apartment Number"/>
 
               <label class="form-label" for="address3">City</label>
-              <input class="form-control" type="text" placeholder="City" id="locality-input" name="address3" readonly />
+              <input class="form-control" type="text" placeholder="City" id="locality-input" name="address3" aria-label="City" readonly />
 
               <div class="half-input-container">
                 <label class="form-label" for="address4">State</label>
