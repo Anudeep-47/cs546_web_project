@@ -42,6 +42,7 @@ Install all the dependencies and Dev dependencies and start over.
 cd projectDirName
 npm install
 node seed.js
+use npm run seedImg
 npm start
 
 ```
