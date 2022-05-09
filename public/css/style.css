@@ -1,5 +1,10 @@
 body {
   padding-top: 100px;
+  background-color: #B0E0E6;
+}
+
+#nav {
+  background-color: #B0E0E6;
 }
 
 .nowrap {
@@ -105,7 +110,13 @@ textarea {
 
 #DocName {
   font-size: 1.3em;
+  font-weight: 500;
 }
-#DocAddress {
+#DocSpecialty {
   font-size: 1em;
+
+}
+#DocQualification {
+  font-size: 1em;
+  font-weight: 300;
 }

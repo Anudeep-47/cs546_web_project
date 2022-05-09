@@ -1,5 +1,5 @@
 const moment = require('moment');
-
+const nodemailer = require('nodemailer');
 
 const splitAppointments = (apptmnts) => {
     const newApptmnts = [];
@@ -31,7 +31,7 @@ const prepareAppointments = (apptmnts, others) => {
             zip
         } = apptmnt.doctor_location;
         apptmnt.doctor_address = `${address}, ${city}, ${state}, ${zip}`;
-        if(others && others[index]){
+        if (others && others[index]) {
             Object.keys(others[index]).forEach(key => {
                 apptmnt[key] = others[index][key];
             });
@@ -40,7 +40,42 @@ const prepareAppointments = (apptmnts, others) => {
 };
 
 
+const sendEmail = async (data, status) => {
+
+    let body = `Dear ${data.patient_name},` +
+        `<br>Your Appointment with ${data.doctor_name} has been ${status}.` +
+        `<br>Appointment Time: ${moment(data.time).format("MMMM Do, h:mm a")}`;
+        
+    var transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+            user: "medical.consultation.01@gmail.com",
+            pass: "onlinemedicalconsultation"
+        }
+    });
+
+    var mailOptions = {
+        from: `"Online Medical Consultation" medical.consultation.01@gmail.com`,
+        to: `${data.user_email}`,
+        subject: `Online Medical Consultation ${status}`,
+        text: "",
+        html: body
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+};
+
+
 module.exports = {
     splitAppointments,
-    prepareAppointments
+    prepareAppointments,
+    sendEmail
 };
