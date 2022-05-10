@@ -48,6 +48,10 @@ router.get('/', async (req, res) => {
         }
     } catch (error) {
         console.log(error);
+        res.render("pages/error404", {
+            title: "Error 404",
+            error,
+        });
     }
 });
 
@@ -59,7 +63,7 @@ router.post('/:id', async (req, res) => {
         } else {
             const id = req.params.id;
             validateID(id);
-            const apptmnt = xss(req.body.updatedApptmnt);
+            const apptmnt = req.body.updatedApptmnt;
             await removeApptmntFromDocSchedule(apptmnt);
             const updatedApptmnt = await updateAppointment(id, apptmnt);
             await addApptmntToDocSchedule(updatedApptmnt);
@@ -73,6 +77,10 @@ router.post('/:id', async (req, res) => {
         }
     } catch (error) {
         console.log(error);
+        res.render("pages/error404", {
+            title: "Error 404",
+            error,
+        });
     }
 });
 
@@ -94,6 +102,10 @@ router.delete('/:id', async (req, res) => {
         }
     } catch (error) {
         console.log(error);
+        res.render("pages/error404", {
+            title: "Error 404",
+            error,
+        });
     }
 });
 

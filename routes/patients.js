@@ -30,6 +30,10 @@ router.get('/apptmnts/:id', async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    res.render("pages/error404", {
+      title: "Error 404",
+      error,
+    });
   }
 });
 
@@ -53,6 +57,10 @@ router.get('/:id', async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    res.render("pages/error404", {
+      title: "Error 404",
+      error,
+    });
   }
 });
 
