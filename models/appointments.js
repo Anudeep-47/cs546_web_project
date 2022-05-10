@@ -71,6 +71,23 @@ const updateAppointment = async (id, {
     return updatedApptmnt;
 };
 
+const addPrescription = async (id, prescription) => {
+    const _id = ObjectId(id);
+    const apptmnts = await getAppointments();
+    const res = await apptmnts.findOneAndUpdate({
+        _id
+    }, {
+        '$set': {
+            prescription
+        }
+    }, {
+        returnDocument: 'after'
+    });
+    const updatedApptmnt = res.value;
+    if (updatedApptmnt === null) throw `Failed to update Appointment with id: ${id}`;
+    return updatedApptmnt;
+};
+
 const getAppointment = async (id) => {
     const _id = ObjectId(id);
     const apptmnts = await getAppointments();
@@ -119,4 +136,5 @@ module.exports = {
     getAppointment,
     getUserIDAppointmentID,
     getDoctorIDAppointmentID,
+    addPrescription
 };

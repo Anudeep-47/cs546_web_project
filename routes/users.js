@@ -34,7 +34,8 @@ const {
 
 const {
     getUserAppointments,
-    createAppointment
+    createAppointment,
+    addPrescription
 } = require('../models/appointments');
 const {
     getDoctor
@@ -174,7 +175,8 @@ router.post('/booking', async (req, res) => {
                 insurance,
                 new_patient: new_patient === 'yes',
                 duration: parseInt(duration),
-                time: new Date(timeSlot)
+                time: new Date(timeSlot),
+                prescription: ""
             }
             const apptmnt = await createAppointment(apptmntDetails);
             await addApptmntToDocSchedule(apptmnt);
@@ -194,6 +196,24 @@ router.post('/booking', async (req, res) => {
         });
     }
 
+});
+
+router.post('/booking/:id', async (req, res) => {
+    try {
+        if (!req.session.user && !req.session.doctor) {
+            res.redirect('/user/login');
+        } else {
+            const aptId = xss(req.params.id);
+            const prescription = xss(req.body.presc);
+            const apptmnt = await addPrescription(aptId, prescription);
+        }
+    } catch (error) {
+        console.log(error);
+        res.render("pages/error404", {
+            title: "Error 404",
+            error,
+        });
+    }
 });
 
 router.get('/login', async (req, res) => {

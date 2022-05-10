@@ -214,6 +214,7 @@ const updateApptmntSection = () => {
         $('#pat_reason').text(mainApptmnt.patient_reason);
         $('#appt_time').text(mainApptmnt.time_string);
         $('#appt_notes').text(mainApptmnt.patient_notes);
+        $('#appt_presc').text(mainApptmnt.prescription);
         $('#pat_gen').text(mainApptmnt.patient_gender);
         $('#pat_age').text(mainApptmnt.patient_age);
         $('#appt_dur').text(mainApptmnt.duration);

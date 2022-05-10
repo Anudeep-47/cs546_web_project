@@ -58,6 +58,7 @@ const updateApptmntSection = () => {
         $('#pat_reason').text(mainApptmnt.patient_reason);
         $('#appt_time').text(mainApptmnt.time_string);
         $('#appt_notes').text(mainApptmnt.patient_notes);
+        $('#appt_presc').text(mainApptmnt.prescription);
         $('#pat_gen').text(mainApptmnt.patient_gender);
         $('#pat_age').text(mainApptmnt.patient_age);
         $('#appt_dur').text(mainApptmnt.duration);
@@ -289,6 +290,7 @@ $('#bookApptmnt').on('click', function (e) {
     const reason = newAppointment.patient_reason;
     const new_patient = "no";
     const notes = "";
+    const prescription = "";
     const duration = bookApptmnt.slotDuration;
     const timeSlot = JSON.parse(JSON.stringify(bookApptmnt.slotDateTime.toDate()));
 
@@ -305,6 +307,7 @@ $('#bookApptmnt').on('click', function (e) {
         reason,
         new_patient,
         notes,
+        prescription,
         duration,
         timeSlot
     };
@@ -316,6 +319,17 @@ $('#bookApptmnt').on('click', function (e) {
         loadAppointments();
         $('#bookingModal').modal('toggle');
     });
+});
+
+$(".addPresc").on("click", function (e) {
+    e.preventDefault();
+    const newAppointment = allApptmnts[0];
+    const aptId = newAppointment._id;
+    const presc = document.getElementById("prescText").value.trim();
+    $.post('/user/booking/'+ aptId, {
+        presc
+    });
+    window.location.href = `/patient/${mainApptmnt._id}`;
 });
 
 $("img").on("error", function () {
