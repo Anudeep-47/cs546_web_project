@@ -69,7 +69,7 @@ router.post("/data", async (req, res) => {
     if (!req.session.doctor) {
       res.redirect("/doctor/login");
     } else {
-      const schedules = xss(req.body.schedules);
+      const schedules = req.body.schedules;
       const id = req.session.doctor.id;
       schedules.forEach((schdl) => {
         schdl.available = JSON.parse(schdl.available);
@@ -270,33 +270,37 @@ router.post("/signup", async (req, res) => {
 
 
 router.post('/appointment', async (req, res) => {
-  try {
-    const doc_id = xss(req.body.bookingDetails.doc_id);
-    const insurance = xss(req.body.bookingDetails.insurance);
-    const reason = xss(req.body.bookingDetails.reason);
-    const new_patient = xss(req.body.bookingDetails.new_patient);
-    const timeSlot = xss(req.body.bookingDetails.timeSlot);
-    console.log(doc_id, insurance, reason, new_patient, timeSlot);
-    if (!doc_id || !insurance || !reason || !new_patient || !timeSlot) {
-      res.redirect('/');
-    } else {
-      req.session.apptmnt = {
-        doc_id,
-        insurance,
-        reason,
-        new_patient,
-        timeSlot
-      };
-      res.json({
-        url: '/user/booking'
+  if (!req.session.user) {
+    res.redirect('/user/login');
+  } else {
+    try {
+      const doc_id = xss(req.body.bookingDetails.doc_id);
+      const insurance = xss(req.body.bookingDetails.insurance);
+      const reason = xss(req.body.bookingDetails.reason);
+      const new_patient = xss(req.body.bookingDetails.new_patient);
+      const timeSlot = xss(req.body.bookingDetails.timeSlot);
+      console.log(doc_id, insurance, reason, new_patient, timeSlot);
+      if (!doc_id || !insurance || !reason || !new_patient || !timeSlot) {
+        res.redirect('/');
+      } else {
+        req.session.apptmnt = {
+          doc_id,
+          insurance,
+          reason,
+          new_patient,
+          timeSlot
+        };
+        res.json({
+          url: '/user/booking'
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      res.render("pages/error404", {
+        title: "Error 404",
+        error,
       });
     }
-  } catch (error) {
-    console.log(error);
-    res.render("pages/error404", {
-      title: "Error 404",
-      error,
-    });
   }
 });
 
