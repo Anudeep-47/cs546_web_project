@@ -271,7 +271,9 @@ router.post("/signup", async (req, res) => {
 
 router.post('/appointment', async (req, res) => {
   if (!req.session.user) {
-    res.redirect('/user/login');
+    res.json({
+      url: '/user/login'
+    });
   } else {
     try {
       const doc_id = xss(req.body.bookingDetails.doc_id);
