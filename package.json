@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
-    "seed": "npm i ./Seed_data/ && node ./Seed_data/index.js",
-    "seedImg": "npm i ./Seed_data/ && cd ./Seed_data/ && node images.js"
+    "seed": "npm i ./Seed_data/ && cd ./Seed_data/ && node images.js"
   },
   "repository": {
     "type": "git",
